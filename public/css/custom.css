@@ -1,0 +1,129 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  /* ~~~~~~ Colors variables :: Begins ~~~~~~ */
+  --primary-color: #093A3E;
+  --info-color: #3AAFB9;
+  --black-color: #001011;
+  --danger-color: #F05365; 
+  /* ~~~~~~ Colors variables :: Ends ~~~~~~ */
+
+  /* ~~~~~~ Border variables :: Begins ~~~~~~ */
+  --border-color: #DBDBDB;
+
+  --border-radius-sm: 5px;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  /* ~~~~~~ Border variables :: Ends ~~~~~~ */
+
+}
+/* ********** Base Style :: Begins ********** */
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+main{
+  width: 85%;
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+main{
+  width: 85%;
+  min-height: calc(100vh - 10rem);
+}
+/* ********** Base Style :: Begins ********** */
+
+/* ********** Module Style :: Begins ********** */
+/* ~~~~~ Header Style :: Begins ~~~~~ */
+header{
+  width: 100%;
+  height: 5rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+}
+header .header-container{
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+a.logo{
+  color: var(--black-color);
+  font-size: 1.5rem;
+  font-family: 'Jacques Francois', serif;
+  font-weight: 400;
+}
+a.logo .logo-span{
+  color: var(--danger-color)
+}
+.header-container .navbar{
+  display: flex;
+  align-items: center;
+}
+.header-container .navbar ul{
+  display: flex;
+}
+.header-container .navbar ul li{
+  margin-left: 2rem;
+}
+.header-container .navbar ul li a{
+  color: var(--black-color);
+  font-size: 1rem;
+  font-weight: 400;
+}
+.header-container .navbar ul li a:active,
+.header-container .navbar ul li a.active{
+  color: var(--danger-color);
+}
+.signup-btn a{
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-left: 2rem;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-sm);
+}
+.header-container .humberger-menu{
+  display: none;
+}
+.header-container .navbar-mobile {
+  display: none;
+}
+/* ~~~~~ Header Style :: Ends ~~~~~ */
+
+/* ~~~~~ Footer Style :: Begins ~~~~~ */
+footer{
+  width: 100%;
+  height: 5rem;
+  background-color: #fff;
+  border-top: 1px solid var(--border-color);
+}
+footer .footer-container{
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+}
+/* ~~~~~ Footer Style :: Ends ~~~~~ */
+/* ********** Module Style :: Ends ********** */
+
+
+/* ********** Media queries Style :: Ends ********** */
+@media only screen and (max-width: 600px) {
+  .header-container .navbar{
+    display: none;
+  }
+  .header-container .humberger-menu {
+    display: block;
+  }
+}
+/* ~~~~~ Header Style :: Begins ~~~~~ */
