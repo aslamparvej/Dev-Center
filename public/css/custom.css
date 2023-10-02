@@ -1,39 +1,38 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-:root{
+:root {
   /* ~~~~~~ Colors variables :: Begins ~~~~~~ */
-  --primary-color: #093A3E;
-  --info-color: #3AAFB9;
+  --primary-color: #093a3e;
+  --info-color: #3aafb9;
   --black-color: #001011;
-  --danger-color: #F05365; 
+  --danger-color: #f05365;
   /* ~~~~~~ Colors variables :: Ends ~~~~~~ */
 
   /* ~~~~~~ Border variables :: Begins ~~~~~~ */
-  --border-color: #DBDBDB;
+  --border-color: #dbdbdb;
 
   --border-radius-sm: 5px;
   --border-radius-md: 0.5rem;
   --border-radius-lg: 1rem;
   /* ~~~~~~ Border variables :: Ends ~~~~~~ */
-
 }
 /* ********** Base Style :: Begins ********** */
-body{
-  font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
 }
-main{
+main {
   width: 85%;
 }
-a{
+a {
   text-decoration: none;
 }
-li{
+li {
   list-style: none;
 }
-main{
+main {
   width: 85%;
   min-height: calc(100vh - 10rem);
 }
@@ -41,7 +40,7 @@ main{
 
 /* ********** Module Style :: Begins ********** */
 /* ~~~~~ Header Style :: Begins ~~~~~ */
-header{
+header {
   width: 100%;
   height: 5rem;
   position: sticky;
@@ -50,7 +49,7 @@ header{
   background-color: #fff;
   border-bottom: 1px solid var(--border-color);
 }
-header .header-container{
+header .header-container {
   width: 85%;
   height: 100%;
   margin: 0 auto;
@@ -58,42 +57,42 @@ header .header-container{
   align-items: center;
   justify-content: space-between;
 }
-a.logo{
+a.logo {
   color: var(--black-color);
   font-size: 1.5rem;
-  font-family: 'Jacques Francois', serif;
+  font-family: "Jacques Francois", serif;
   font-weight: 400;
 }
-a.logo .logo-span{
-  color: var(--danger-color)
+a.logo .logo-span {
+  color: var(--danger-color);
 }
-.header-container .navbar{
+.header-container .navbar {
   display: flex;
   align-items: center;
 }
-.header-container .navbar ul{
+.header-container .navbar ul {
   display: flex;
 }
-.header-container .navbar ul li{
+.header-container .navbar ul li {
   margin-left: 2rem;
 }
-.header-container .navbar ul li a{
+.header-container .navbar ul li a {
   color: var(--black-color);
   font-size: 1rem;
   font-weight: 400;
 }
 .header-container .navbar ul li a:active,
-.header-container .navbar ul li a.active{
+.header-container .navbar ul li a.active {
   color: var(--danger-color);
 }
-.signup-btn a{
+.signup-btn a {
   color: #fff;
   padding: 0.5rem 1rem;
   margin-left: 2rem;
   background-color: var(--primary-color);
   border-radius: var(--border-radius-sm);
 }
-.header-container .humberger-menu{
+.header-container .humberger-menu {
   display: none;
 }
 .header-container .navbar-mobile {
@@ -102,24 +101,84 @@ a.logo .logo-span{
 /* ~~~~~ Header Style :: Ends ~~~~~ */
 
 /* ~~~~~ Footer Style :: Begins ~~~~~ */
-footer{
+footer {
   width: 100%;
   height: 5rem;
   background-color: #fff;
   border-top: 1px solid var(--border-color);
 }
-footer .footer-container{
+footer .footer-container {
   width: 85%;
   height: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.footer-logo,.footer-logo .logo{
+  font-size: 0.875rem;
+}
+.social-links-container{
+  display: flex;
+  align-items: center;
+}
+.social-links-container ul{
+  display: flex;
+  margin-left: 1.5rem;
+}
+.social-link{
+  width: 2rem;
+  height: 2rem;
+  /* background-color: #E9E9E9; */
+  background-color: #a7a7a7;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all  0.5s ease-in-out;
+}
+.social-link span{
+  color: #fff;
+}
+.social-link:hover{
+  scale: 1.2;
+}
+.social-link.social-link-fb:hover{
+  background-color: #29487d;
+}
+.social-link.social-link-twi:hover{
+  background-color: #1D9BF0;
+}
+.social-link.social-link-linkdn:hover{
+  background-color: #0077B5;
+}
+.social-link.social-link-yt:hover{
+  background-color: #CD201F;
+}
+
+.footer-container-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.copyright-container ul{
+  display: flex;
+}
+.copyright-container ul li{
+  color: var(--black-color);
+  margin-left: 2.5rem;
+}
+.copyright-container ul li a{
+  color: var(--black-color);
+  font-size: 0.875rem;
 }
 /* ~~~~~ Footer Style :: Ends ~~~~~ */
 /* ********** Module Style :: Ends ********** */
 
-
 /* ********** Media queries Style :: Ends ********** */
 @media only screen and (max-width: 600px) {
-  .header-container .navbar{
+  .header-container .navbar {
     display: none;
   }
   .header-container .humberger-menu {
