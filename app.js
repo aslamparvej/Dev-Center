@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
-const authRoute = require('./routes/auth.routes')
+
+const authRoute = require('./routes/auth.routes');
+const homeRoute = require('./routes/home.routes');
 
 const app = express();
 
@@ -18,8 +20,10 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended: false}));
 
 // For router
-app.use(authRoute)
+app.use(authRoute);
+app.use(homeRoute)
 
 app.listen(PORT, function(){
   console.log(`Server running on PORT ${PORT}`);
+  console.log(`You can see the site on link ${URL}${PORT}`);
 });

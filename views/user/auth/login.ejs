@@ -1,0 +1,37 @@
+<%- include('../includes/head', {webTitle: 'Login'}) %>
+<%- include('../includes/header') %>
+
+<!-- login form container :: Begins -->
+<main>
+  <div class="main-container">
+    <!-- Form container :: Begins -->
+    <div class="form-container">
+      <h2 class="auth-text">Login</h2>
+      <form action="/login" method="GET">
+         <!-- Form input container for Username :: Begins -->
+        <div class="input-container">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" required>
+        </div>
+        <!-- Form input container for Username :: Ends -->
+
+        <!-- Form input container for Password :: Begins -->
+        <div class="input-container">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <!-- Form input container for Password :: Ends -->
+        <!-- Form Button container :: Begins -->
+        <div class="form-btn-container">
+          <button type="reset" class="custom-btn custom-reset-btn ">Reset</button>
+          <button type="submit" class="custom-btn custom-submit-btn ">Login</button>
+        </div>
+        <!-- Form Button container :: Ends -->
+      </form>
+      <p class="login-signup-text"><a href="/signup">Create new account</a></p>
+    </div>
+    <!-- Form container :: Ends -->
+  </div>
+</main>
+<!-- login form container :: Ends -->
+<%- include('../includes/footer') %>

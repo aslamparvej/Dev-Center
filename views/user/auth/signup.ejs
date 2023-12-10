@@ -1,0 +1,51 @@
+<%- include('../includes/head', {webTitle: 'Signup'}) %>
+<%- include('../includes/header') %>
+<!-- Signup form main container :: Begins -->
+<main>
+  <div class="main-container">
+    <!-- Form container :: Begins -->
+    <div class="form-container">
+      <h2 class="auth-text">Sign Up</h2>
+      <form action="/signup" method="post">
+         <!-- Form input container for Full Name :: Begins -->
+        <div class="input-container">
+          <label for="fname">Full Name</label>
+          <input type="text" name="fname" id="fname" required>
+        </div>
+        <!-- Form input container for Full Name :: Ends -->
+
+        <!-- Form input container for Email :: Begins -->
+         <div class="input-container">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+        </div>
+        <!-- Form input container for Email :: Ends -->
+
+        <!-- Form input container for Password :: Begins -->
+        <div class="input-container">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <!-- Form input container for Password :: Ends -->
+
+        <!-- Form input container for Confirm Password :: Begins -->
+        <div class="input-container">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" required>
+        </div>
+        <input type="hidden" name="userType" id="userType">
+        <!-- Form input container for Confirm Password :: Ends -->
+        <!-- Form Button container :: Begins -->
+        <div class="form-btn-container">
+          <button type="reset" class="custom-btn custom-reset-btn ">Reset</button>
+          <button type="submit" class="custom-btn custom-submit-btn ">Sign Up</button>
+        </div>
+        <!-- Form Button container :: Ends -->
+      </form>
+      <p class="login-signup-text"><a href="/login">Login</a></p>
+    </div>
+    <!-- Form container :: Ends -->
+  </div>
+</main>
+<!-- Signup form main container :: Ends -->
+<%- include('../includes/footer') %>
