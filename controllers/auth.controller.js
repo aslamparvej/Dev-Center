@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-
 const User = require('../models/user.model');
 const db = require('../data/database');
 
@@ -9,8 +8,29 @@ function getSignup(req,res){
 }
 
 async function signup(req, res){
+  const { name, email, password, confirmPassword, userType } = req.body;
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    try {
+        // Check if user already exists
+        // let existingUser = await User.findOne({ email });
+        // if (existingUser) {
+        //     return res.status(400).json({ message: 'User already exists' });
+        // }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 12);
+
+        // Create a new user
+        const newUser = new User({username: email, name, email, password: hashedPassword, userType: "Admin"});
+        await newUser.save();
+
+        res.status(201).json({ message: 'User created successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+
+  /* const hashedPassword = await bcrypt.hash(req.body.password, 12);
 
   const user = {
     'name': req.body.email,
@@ -19,14 +39,15 @@ async function signup(req, res){
     'userType': req.body.userType,
   }
 
-  await db.connectToDatabase();
-  // const database = db.getDb();
-  // database.collection('users');
-  await db.getDb().collection("users").insertOne(user);
+
+  const database = db();
+
+  await database.collection("users").insertOne(user);
+  
   console.log(user);
 
   
-  res.redirect('/login');
+  res.redirect('/login'); */
 }
 
 /* *********** Sign up controller :: Ends *********** */

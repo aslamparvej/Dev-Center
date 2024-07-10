@@ -2,7 +2,7 @@
 <%- include('../includes/header') %>
 
 <!-- login form container :: Begins -->
-<main>
+<main style="height: calc(100vh - 10rem);">
   <div class="main-container">
     <!-- Form container :: Begins -->
     <div class="form-container">
@@ -23,12 +23,12 @@
         <!-- Form input container for Password :: Ends -->
         <!-- Form Button container :: Begins -->
         <div class="form-btn-container">
-          <button type="reset" class="custom-btn custom-reset-btn ">Reset</button>
-          <button type="submit" class="custom-btn custom-submit-btn ">Login</button>
+          <button type="reset" class="custom-btn custom-reset-btn" style="display: none;">Reset</button>
+          <button type="submit" class="custom-btn custom-submit-btn ">Sign In</button>
         </div>
         <!-- Form Button container :: Ends -->
       </form>
-      <p class="login-signup-text"><a href="/signup">Create new account</a></p>
+      <p class="login-signup-text">Don't have an account? <a href="/signup">Sign up now</a></p>
     </div>
     <!-- Form container :: Ends -->
   </div>
