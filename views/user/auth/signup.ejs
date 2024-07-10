@@ -1,7 +1,7 @@
 <%- include('../includes/head', {webTitle: 'Signup'}) %>
 <%- include('../includes/header') %>
 <!-- Signup form main container :: Begins -->
-<main>
+<main style="height: calc(100vh - 10rem);">
   <div class="main-container">
     <!-- Form container :: Begins -->
     <div class="form-container">
@@ -10,7 +10,7 @@
          <!-- Form input container for Full Name :: Begins -->
         <div class="input-container">
           <label for="fname">Full Name</label>
-          <input type="text" name="fname" id="fname" required>
+          <input type="text" name="name" id="fname" required>
         </div>
         <!-- Form input container for Full Name :: Ends -->
 
@@ -37,12 +37,12 @@
         <!-- Form input container for Confirm Password :: Ends -->
         <!-- Form Button container :: Begins -->
         <div class="form-btn-container">
-          <button type="reset" class="custom-btn custom-reset-btn ">Reset</button>
+          <button type="reset" class="custom-btn custom-reset-btn " style="display: none;">Reset</button>
           <button type="submit" class="custom-btn custom-submit-btn ">Sign Up</button>
         </div>
         <!-- Form Button container :: Ends -->
       </form>
-      <p class="login-signup-text"><a href="/login">Login</a></p>
+      <p class="login-signup-text">Already have an account? <a href="/login">Login Here</a></p>
     </div>
     <!-- Form container :: Ends -->
   </div>
