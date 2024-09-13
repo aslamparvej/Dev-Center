@@ -1,0 +1,42 @@
+<%- include('../includes/head', {webTitle: 'Blogs' }) %>
+    <%- include('../includes/header') %>
+        <main>
+            <div class="blog-container" style="padding-block: 2rem;">
+                <div class="blog-post-header">
+                    <div class="blog-post-details">
+                        <p class="blog-post-published-details">Published <%= moment(blogPost.createdAt).format('DD MMM YYYY') %></p>
+                        <h1 class="blog-post-title"><%= blogPost.title %></h1>
+                        <p class="blog-post-description d-none"><%= blogPost.description %></p>
+                        <p class="blog-post-category-container">
+                            <span class="badge rounded-pill bg-info text-dark"><%= blogPost.category.category %></span>
+                        </p>
+                    </div>
+                    <div class="blog-post-featured-iamge">
+                        <img src="<%= blogPost.featuredImage %>" alt="">
+                    </div>
+                </div>
+                <div class="blog-post-content">
+                    <%- blogPost.blogText %>
+                </div>
+                <div class="blog-post-footer">
+                    <div class="comment-btn-container text-center">
+                       <a href="/contact"><button class="custom-btn custom-action-btn-delete" style="min-width: 10rem;">Comment</button></a>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 d-none">
+                        <span class="creator-avatar" id="creatorAvatar"><%= blogPost.userId.name.split(" ")[0].charAt(0) %><%= blogPost.userId.name.split(" ")[blogPost.userId.name.split(" ").length - 1].charAt(0) %></span>
+                        <p><%=  blogPost.userId.name %></p>
+                    </div>
+                    <div class="social-links-container d-none">
+                        <ul>
+                          <li><a href="#" class="social-link social-link-fb"><span><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></span></a>
+                          </li>
+                          <li><a href="#" class="social-link social-link-twi"><span><i class="fa-brands fa-twitter" aria-hidden="true"></i></span></a></li>
+                          <li><a href="#" class="social-link social-link-linkdn"><span><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <%- include('../includes/footer') %>

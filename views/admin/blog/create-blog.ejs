@@ -1,0 +1,78 @@
+<%- include('../../user/includes/head', {webTitle: 'Create Blog' }) %>
+    <%- include('../../admin/includes/header') %>
+
+        <!-- Home Container :: Begins -->
+        <main style="padding-block: 2rem;">
+            <h1>Create Blog</h1>
+
+            <form class="form-container" method="post" action="./create-blog" style="margin-block: 2rem;"
+                onsubmit="return handleFormSubmit()" enctype="multipart/form-data">
+                <div class="input-container">
+                    <label>Blog Title</label>
+                    <input type="text" name="blogTitle" id="">
+                </div>
+                <div class="input-container">
+                    <label>Blog Desciption</label>
+                    <textarea name="blogDescription" id=""></textarea>
+                </div>
+                <div class="input-container">
+                    <label>Blog Featured Image</label>
+                    <input type="file" name="blogFeaturedImage" id="blogFeaturedImage" accept="image/*" required>
+                </div>
+                <div class="input-container">
+                    <label for="blogCategory">Blog Category</label>
+                    <select id="blogCategory" name="blogCategory">
+                        <option disabled selected>Select a category</option>
+                        <% categories.forEach(function(category) { %>
+                            <option value="<%= category._id %>">
+                                <%= category.category %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div id="editor"></div>
+                <!-- Hidden input to store the HTML content -->
+                <input type="hidden" name="blogContent" id="blogContent">
+
+                <div class="" style="margin-top: 2rem; text-align: end;">
+                    <button type="submit" class="custom-btn custom-submit-btn ">Publish</button>
+                </div>
+            </form>
+
+
+        </main>
+        <!-- Home Container :: Begins -->
+
+        <script>
+
+            $(document).ready(function () {
+                $("#blogCategory").select2({minimumResultsForSearch: -1});
+            });
+
+            const quill = new Quill('#editor', {
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        ['bold', 'italic', 'underline'],
+                        ['image', 'code-block'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+                        [{ 'align': [] }],
+                        ['link'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'font': [] }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+
+                    ],
+                },
+                placeholder: 'Write your blog content here...',
+                theme: 'snow', // or 'bubble'
+            });
+
+            function handleFormSubmit() {
+                var hiddenContent = document.querySelector('#blogContent');
+                hiddenContent.value = quill.root.innerHTML; // Get the HTML content from Quill
+                return true; // Proceed with the form submission
+            }
+        </script>
+
+        <%- include('../../admin/includes/footer') %>

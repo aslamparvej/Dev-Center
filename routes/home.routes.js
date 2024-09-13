@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.get('/', homeController.getHome);
 
+router.post('/subscribe', homeController.subscribe);
+
 module.exports = router;
