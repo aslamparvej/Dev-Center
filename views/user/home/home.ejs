@@ -1,173 +1,73 @@
-<%- include('../includes/head', {webTitle: 'Home'}) %>
-<%- include('../includes/header') %>
+<%- include('../includes/head', {webTitle: 'Home' }) %>
+    <%- include('../includes/header') %>
 
-<!-- Home Container :: Begins -->
-<main>
-    <div class="website-tagline-container">
-        <h2 class="website-tagline-text">Learn development in simple words</h2>
-    </div>
-    <div class="search-container">
-        <h3 class="subscribe-text">Subscribe Newsletter</h3>
-        <div class="search-input-field-wrapper">
-            <input type="text" id="searchInput" class="search-input-field" placeholder="xyz@gmail.com">
-            <span class="search-btn">Subscribe <span class="" style="margin-left: 0.5rem;"><i class="fa-regular fa-bell"></i></span></span>
-        </div>
-    </div>
-    <div class="top-blog-container">
-        <h2 class="section-title" style="display: none;">Blogs</h2>
-        <div class="blog-card-container">
-            <!-- Blog Card 1 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="">
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
+        <!-- Home Container :: Begins -->
+        <main>
+            <div class="website-tagline-container">
+                <h2 class="website-tagline-text">Learn development in simple words</h2>
+            </div>
+            <div class="search-container">
+                <h3 class="subscribe-text">Subscribe Newsletter</h3>
+                <form action="/subscribe" method="post">
+                    <div class="search-input-field-wrapper">
+                        <input type="text" id="searchInput" class="search-input-field" placeholder="xyz@gmail.com" required>
+                        <button type="submit" class="search-btn">
+                            Subscribe
+                            <span class="" style="margin-left: 0.5rem;"><i class="fa-regular fa-bell"></i></span>
+                        </button>
                     </div>
-                </div>
-                <div class="blog-card-footer">
-                    <div class="creator-details-container">
-                        <span class="creator-avatar" id="creatorAvatar">
-                            AP
-                            <!-- <img src="" alt=""> -->
-                        </span>
-                        <div class="created-details">
-                            <span class="creator-name">Aslam Parvej</span>
-                            <span class="created-date">15-05-2024</span>
+                </form>
+            </div>
+            <div class="top-blog-container">
+                <h2 class="section-title" style="display: none;">Blogs</h2>
+                <div class="blog-card-container">
+                    <!-- Blog Card :: Begins  -->
+                    <% blogs.forEach(function(blog) { %>
+                        <div class="blog-card" onclick="location.href='/blog/<%= blog._id %>'">
+                            <div class="blog-card-header">
+                                <img src="<%= blog.featuredImage %>" alt="">
+                            </div>
+                            <div class="blog-card-body">
+                                <div class="blog-category">
+                                    <%= blog.category.category %>
+                                </div>
+                                <h2 class="blog-title">
+                                    <%= blog.title %>
+                                </h2>
+                                <div class="blog-body">
+                                    <p>
+                                        <%= blog.description.split(/\s+/).slice(0, 20).join(' ') %>...
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="blog-card-footer">
+                                <div class="creator-details-container">
+                                    <span class="creator-avatar" id="creatorAvatar">
+                                        AP
+                                        <!-- <img src="" alt=""> -->
+                                    </span>
+                                    <div class="created-details">
+                                        <span class="creator-name">
+                                            <%= blog.userId.name %>
+                                        </span>
+                                        <span class="created-date">
+                                            <%= moment(blog.createdAt).format(' DD MMM YYYY') %>
+                                            </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                </div>
+                <% }); %>
+                    <!-- Blog Card :: Ends  -->
+            </div>
+            </div>
+            <div class="top-tutorial-container" style="display: none;">
+                <h2 class="section-title">Recent Tutorials</h2>
+                <div class="tutorial-card-container">
+                    <%- include('../includes/work_in_progress') %>
                 </div>
             </div>
-            <!-- Blog Card 1 :: Ends  -->
-            <!-- Blog Card 2 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="" >
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 2 :: Ends  -->
-            <!-- Blog Card 3 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="">
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 3 :: Ends  -->
-            <!-- Blog Card 4 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="" >
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 4 :: Ends  -->
+        </main>
+        <!-- Home Container :: Begins -->
 
-            <!-- Blog Card 1 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="">
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer">
-                    <div class="creator-details-container">
-                        <span class="creator-avatar" id="creatorAvatar">
-                            AP
-                            <!-- <img src="" alt=""> -->
-                        </span>
-                        <div class="created-details">
-                            <span class="creator-name">Aslam Parvej</span>
-                            <span class="created-date">15-05-2024</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Card 1 :: Ends  -->
-            <!-- Blog Card 2 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="" >
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 2 :: Ends  -->
-            <!-- Blog Card 3 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="">
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 3 :: Ends  -->
-            <!-- Blog Card 4 :: Begins  -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/02/15/00/diary-968592_1280.jpg" alt="" >
-                </div>
-                <div class="blog-card-body">
-                    <div class="blog-category">Web Developent</div>
-                    <h2 class="blog-title">UX review presentations</h2>
-                    <div class="blog-body">
-                        <p>How do you create compelling presentations that wow your colleagues and impress your managers?</p>
-                    </div>
-                </div>
-                <div class="blog-card-footer"></div>
-            </div>
-            <!-- Blog Card 4 :: Ends  -->
-        </div>
-    </div>
-    <div class="top-tutorial-container" style="display: none;">
-        <h2 class="section-title">Recent Tutorials</h2>
-        <div class="tutorial-card-container">
-            <%- include('../includes/work_in_progress') %>
-        </div>
-    </div>
-</main>
-<!-- Home Container :: Begins -->
-
-<%- include('../includes/footer') %>
+        <%- include('../includes/footer') %>

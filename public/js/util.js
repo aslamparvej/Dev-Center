@@ -1,7 +1,5 @@
-let menuBtnElements = document.querySelectorAll('.nav-link');
-
-menuBtnElements.forEach(menuItem => {
-    menuItem.addEventListener('click', function(){
-        this.classList.add('active');
+$(document).ready(function(){
+    $("#humberger_menu_btn__ID").on('click', function(){
+        $(".custom-navbar-mobile").toggleClass('open');
     });
 });

@@ -1,0 +1,60 @@
+<%- include('../../user/includes/head', {webTitle: ' Admin' }) %>
+    <%- include('../../admin/includes/header') %>
+
+        <!-- Home Container :: Begins -->
+        <main style="height: calc(100vh - 10rem); padding: 1rem;">
+            <div class="blogs-container">
+                <div class="text-end mb-3">
+                    <a href="/admin/create-blog"><button type="button" class="custom-btn custom-submit-btn">Add Category</button></a>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Blog Name</th>
+                            <th>User</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% blogs.forEach(function(blog) { %>
+                            <tr>
+                                <td>
+                                    <%= blog.title %>
+                                </td>
+                                <td>
+                                    <%= blog.userId.name %>
+                                </td>
+                                <% if (blog.category && blog.category.category) { %>
+                                    <td>
+                                        <%= blog.category.category %>
+                                    </td>
+                                <% } else { %>
+                                        <td>No Category</td>
+                                        <% } %>
+                                        <td><a href="<%= blog.featuredImage %>" target="_blank"><%= blog.featuredImage.split('/').pop() %></a></td>
+                                        <td class="text-center">
+                                            <span class="custom-action-btn custom-action-btn-edit"><i
+                                                        class="fa-regular fa-sm fa-pen-to-square"></i></span>
+                                            <form action="./blogs/<%= blog._id %>?_method=DELETE" method="POST"
+                                                    style="display: inline">
+                                                <button type="submit"
+                                                        class="custom-action-btn custom-action-btn-delete"><i
+                                                            class="fa-regular fa-sm fa-trash-can"></i></span>
+                                            </form>
+                                        </td>
+                                
+                            </tr>
+                            <% })%>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <!-- Home Container :: Begins -->
+
+        <script>
+
+        </script>
+
+        <%- include('../../admin/includes/footer') %>

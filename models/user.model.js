@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  username:{
+  username: {
     type: String,
     required: true,
     unique: true,
@@ -26,31 +27,15 @@ const userSchema = new mongoose.Schema({
     enum: ['Admin', 'Contributor', 'User'],
     required: true,
   }
-}, {timestamps: true});
+}, { timestamps: true });
 
 
-module.export = mongoose.model('User', userSchema);
+// Compare password method
+userSchema.methods.comparePassword = function(candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
 
-// Updated on 14-03-20224
-/* const bcrypt = require('bcryptjs');
 
-const db = require('../data/database');
+const User = mongoose.model('User', userSchema);
 
-class User {
-  constructor(email, fullName, password, userType){
-    this.email = email;
-    this.name = fullName;
-    this.password = password;
-    this.userType =  userType;
-  }
-  async signup(){
-    const hashedPassword = await bcrypt.hash(this.password, 12);
-
-    await db.getDb().collection('users').insertOne({
-      email: this.email,
-      name: this.name,
-      password: hashedPassword,
-      userType: this.userType
-    });
-  }
-} */
+module.exports = User;

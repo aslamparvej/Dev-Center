@@ -1,0 +1,71 @@
+<%- include('../../user/includes/head', {webTitle: ' Admin' }) %>
+  <%- include('../../admin/includes/header') %>
+
+    <!-- login form container :: Begins -->
+    <main style="height: calc(100vh - 10rem); padding: 1rem;">
+      <div class="category-container">
+        <div class="text-end mb-3">
+          <button type="button" class="custom-btn custom-submit-btn " data-bs-toggle="modal"
+          data-bs-target="#add_category_modal__ID">Add Category</button>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Category Name</th>
+              <th>Total No Blog</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% categories.forEach(function(category){ %>
+              <tr>
+                <td>
+                  <%= category.category %>
+                </td>
+                <td></td>
+                <td class="text-center">
+                  <span class="custom-action-btn custom-action-btn-edit"><i class="fa-regular fa-sm fa-pen-to-square"></i></span>
+                  <form action="./categories/<%= category._id %>?_method=DELETE" method="POST" style="display: inline">
+                    <button type="submit" class="custom-action-btn custom-action-btn-delete"><i class="fa-regular fa-sm fa-trash-can"></i></span>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Add Category Modal :: Begins -->
+      <div class="modal fade" id="add_category_modal__ID" tabindex="-1" aria-labelledby="add_category_modal__IDLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="./categories" method="POST">
+                <!-- Form input container for Username :: Begins -->
+                <div class="input-container">
+                  <label for="category" class="form-label custom-form-label">Category</label>
+                  <input type="text" class="form-control custom-form-control" name="category" id="category" required
+                    placeholder="e.g. Web Development">
+                </div>
+                <!-- Form input container for Username :: Ends -->
+                <!-- Form Button container :: Begins -->
+                <div class="form-btn-container">
+                  <button type="submit" class="custom-btn custom-submit-btn ">Save</button>
+                </div>
+                <!-- Form Button container :: Ends -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Category Modal :: Ends -->
+    </main>
+    <!-- login form container :: Ends -->
+
+
+    <%- include('../../admin/includes/footer') %>

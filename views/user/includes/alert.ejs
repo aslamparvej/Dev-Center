@@ -1,0 +1,20 @@
+<%- include('./head', {webTitle: 'Home' }) %>
+    </head>
+
+    <body>
+        <script>
+            Swal.fire({
+                title: '<%= title %>',
+                text: "<%= message %>",
+                icon: '<%= icon %>',
+                confirmButtonText: '<%= confirmButtonText %>',
+                customClass: {
+                    confirmButton: 'custom-btn custom-submit-btn'
+                },
+            }).then(() => {
+                window.location.href = '<%= redirectLocation %>';
+            });;
+        </script>
+    </body>
+
+    </html>
