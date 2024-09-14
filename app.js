@@ -23,7 +23,7 @@ const authStatus = require('./middleware/setAuthStatus');
 const app = express();
 
 // Constant Variables
-let PORT = 3000;
+let PORT = 4000;
 let URL = 'localhost:';
 
 if(process.env.PORT){
