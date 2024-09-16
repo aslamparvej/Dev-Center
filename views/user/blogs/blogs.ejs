@@ -11,7 +11,7 @@
                                 <img src="<%= blog.featuredImage %>" alt="">
                             </div>
                             <div class="blog-card-body">
-                                <div class="blog-category"><%= blog.category.category %></div>
+                                <div class="blog-category"><%= blog.category?.category %></div>
                                 <h2 class="blog-title"><%= blog.title %></h2>
                                 <div class="blog-body">
                                     <p><%= blog.description.split(/\s+/).slice(0, 20).join(' ') %>...</p>
