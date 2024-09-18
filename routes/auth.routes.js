@@ -6,8 +6,8 @@ const User = require("../models/user.model");
 const router = express.Router();
 
 // Signup Routes
-router.get('/signup', authController.getSignup);
-router.post('/signup', authController.signup);
+// router.get('/signup', authController.getSignup);
+// router.post('/signup', authController.signup);
 
 // Login Routes
 router.get('/login', authController.getLogin);

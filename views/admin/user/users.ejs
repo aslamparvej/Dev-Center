@@ -1,0 +1,133 @@
+<%- include('../../user/includes/head', {webTitle: ' Admin' }) %>
+  <%- include('../../admin/includes/header') %>
+
+    <!-- login form container :: Begins -->
+    <main style="height: calc(100vh - 10rem); padding: 1rem;">
+      <div class="category-container">
+        <div class="text-end mb-3">
+          <button type="button" class="custom-btn custom-submit-btn " data-bs-toggle="modal"
+            data-bs-target="#add_user_modal__ID">Add User</button>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>User Type</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(function(user){ %>
+              <tr>
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <%= user.username %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= user.userType %>
+                </td>
+                <td class="text-center">
+                  <span class="custom-action-btn custom-action-btn-edit"><i
+                      class="fa-regular fa-sm fa-pen-to-square"></i></span>
+                  <form action="./users/<%= user._id %>?_method=DELETE" method="POST" style="display: inline">
+                    <button type="submit" class="custom-action-btn custom-action-btn-delete"><i
+                        class="fa-regular fa-sm fa-trash-can"></i></span>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Add Category Modal :: Begins -->
+      <div class="modal fade" id="add_user_modal__ID" tabindex="-1" aria-labelledby="add_user_modal__ID_Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body form-container">
+              <form action="./users" method="POST">
+                <!-- Form input container for Full Name :: Begins -->
+                <div class="input-container">
+                  <label for="fname">Full Name</label>
+                  <input type="text" name="name" id="fname" required>
+                </div>
+                <!-- Form input container for Full Name :: Ends -->
+
+                <!-- Form input container for Email :: Begins -->
+                <div class="input-container">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="email" required>
+                </div>
+                <!-- Form input container for Email :: Ends -->
+
+                <!-- Form input container for Password :: Begins -->
+                <div class="input-container">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" id="password" required>
+                </div>
+                <!-- Form input container for Password :: Ends -->
+
+                <!-- Form input container for Confirm Password :: Begins -->
+                <div class="input-container">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" name="confirmPassword" id="confirmPassword" required>
+                </div>
+                <!-- <input type="hidden" name="userType" id="userType"> -->
+                <!-- Form input container for Confirm Password :: Ends -->
+
+                <!-- Form input container for Confirm Password :: Ends -->
+                <div class="input-container">
+                  <label for="password">User Type</label>
+                  <select class="" id="user_type_select2__ID" required name="userType">
+                    <option disabled selected>Select a category</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Contributor">Contributor</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
+                <!-- Form input container for Confirm Password :: Ends -->
+
+                <!-- Form Button container :: Begins -->
+                <div class="form-btn-container">
+                  <button type="submit" class="custom-btn custom-submit-btn ">Create User</button>
+                </div>
+                <!-- Form Button container :: Ends -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Category Modal :: Ends -->
+    </main>
+    <!-- login form container :: Ends -->
+
+    <script>
+      $(document).ready(function () {
+        // $('#add_user_modal__ID').on('shown.bs.modal', function () {
+        //   $('#select2-user_type_select2__ID').select2({
+        //     dropdownParent: $('#add_user_modal__ID'),
+        //     minimumResultsForSearch: -1 
+        //   });
+        // });
+
+        // $('#add_user_modal__ID').on('hidden.bs.modal', function () {
+        //   $('#select2-user_type_select2__ID').select2('destroy');
+        // });
+
+         $("#user_type_select2__ID").select2({ minimumResultsForSearch: -1,dropdownParent: $('#add_user_modal__ID')});
+      });
+    </script>
+
+    <%- include('../../admin/includes/footer') %>
