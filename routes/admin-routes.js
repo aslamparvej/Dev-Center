@@ -19,6 +19,10 @@ router.post('/create-blog', upload.single('blogFeaturedImage'), adminController.
 router.get('/blogs', adminController.getAllBlog);
 router.delete('/blogs/:id', adminController.deleteBlog);
 
+router.get('/users', adminController.getUsers);
+router.post('/users', adminController.addUser);
+router.delete('/users/:id', adminController.deleteUser);
+
 
 
 module.exports = router;
