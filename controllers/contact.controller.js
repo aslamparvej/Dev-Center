@@ -29,7 +29,7 @@ function postContact(req, res) {
             html: `<div class="mail-template-container" style="height: 100%; width: 100%; background: #EAF0F3; font-family: Arial; color: #5E5E5E; font-size: 16px;font-weight: 400;line-height: 26px;">
             <div class="mail-template" style="width: 40rem; margin: 0 auto; height: 100%; padding: 1rem;">
             <div class="client-logo-container" style="margin-bottom: 2rem;">
-            <img src="./assets/enerv-global-logo.png" alt="enerv global logo" />
+            <img src="https://devcenter.in/img/assets/website-logo.png" alt="enerv global logo" />
             </div>
             <div class="mail-content" style="background: #FFFFFF; padding: 2rem;">
                 <div class="mail-content-header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
