@@ -8,10 +8,14 @@
       <nav class="custom-navbar">
         <ul>
           <li><a class="custom-nav-link active" href="/admin">Home</a></li>
+          <% if (isAdmin) { %>
           <li><a class="custom-nav-link" href="/admin/categories">Category</a></li>
+          <% } %>
           <li><a class="custom-nav-link" href="/admin/create-blog">Create Blog</a></li>
           <li><a class="custom-nav-link" href="/admin/blogs">All Blogs</a></li>
-          <li><a class="custom-nav-link" href="/admin/users">Users</a></li>
+          <% if (isAdmin) { %>
+            <li><a class="custom-nav-link" href="/admin/users">Users</a></li>
+          <% } %>
         </ul>
         <span class="signup-btn"><a href="/">User Portal</a></span>
         <form action="/logout" method="post">
@@ -26,10 +30,14 @@
       <nav class="custom-navbar-mobile">
         <ul>
           <li><a class="custom-nav-link active" href="/admin">Home</a></li>
-          <li><a class="custom-nav-link" href="/admin/categories">Category</a></li>
+          <% if (isAdmin) { %>
+            <li><a class="custom-nav-link" href="/admin/categories">Category</a></li>
+          <% } %>
           <li><a class="custom-nav-link" href="/admin/create-blog">Create Blog</a></li>
           <li><a class="custom-nav-link" href="/admin/blogs">All Blogs</a></li>
+          <% if (isAdmin) { %>
           <li><a class="custom-nav-link" href="/admin/users">Users</a></li>
+          <% } %>
         </ul>
         <div class="text-center mb-3">
           <a href="/"><button class="custom-btn signup-btn">User Portal</button></a>
