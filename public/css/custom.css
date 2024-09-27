@@ -41,10 +41,6 @@ a {
   text-decoration: none;
 }
 
-li {
-  list-style: none;
-}
-
 /* ********** Base Style :: Enda ********** */
 
 /* ********** Module Style :: Begins ********** */
@@ -88,6 +84,7 @@ a.logo .logo-span {
 .header-container .custom-navbar ul {
   display: flex;
   margin-bottom: 0;
+  list-style: none;
 }
 
 .header-container .custom-navbar ul li {
@@ -214,6 +211,7 @@ footer .footer-container {
   display: flex;
   margin-left: 1.5rem;
   margin-bottom: 0;
+  list-style: none;
 }
 
 .social-link {
@@ -592,8 +590,9 @@ main .main-container .form-container {
   height: auto;
 }
 
-.blog-post-content ol {
-  padding: 0;
+
+.blog-post-content ol li::marker {
+  color: #0e101a;
 }
 
 .blog-post-footer {
