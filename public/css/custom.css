@@ -614,6 +614,34 @@ main .main-container .form-container {
 /* ~~~~~ Main Style :: Ends ~~~~~ */
 /* ********** Module Style :: Ends ********** */
 
+/* ********** Admin Style :: Begins ********** */
+/* Admin Dashboard CSS :: Begins */
+.dashboard-container {
+  height: calc(100vh - 10rem - 5rem);
+  max-height: calc(100vh - 10rem - 5rem);
+  overflow: auto;
+}
+
+.section-heading {
+  padding: 1rem;
+  border-radius: var(--border-radius-lg);
+  background-color: #ffeaec;
+}
+
+.section-heading p {
+  color: var(--danger-color);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.section-heading h2 {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Admin Dashboard CSS :: Ends */
+/* ********** Admin Style :: Ends ********** */
+
 /* ********** Custom Components :: Begins ********** */
 .blog-card-container {
   display: flex;
@@ -714,6 +742,91 @@ main .main-container .form-container {
 /*~~~~~~~~~ Custom Card :: Begins ~~~~~~~~ */
 .custom-card {
   border: 1px solid var(--border-color);
+}
+
+.admin-custom-card {
+  border: 0;
+  border-radius: var(--border-radius-md);
+}
+
+.admin-custom-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.admin-custom-card .card-value-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-custom-card .card-value {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.admin-custom-card .card-value-icon {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+}
+
+.pale-aqua-card {
+  background-color: #E1FDF9;
+}
+
+.pale-aqua-card .card-title {
+  color: #16BEA6;
+}
+
+.pale-aqua-card .card-value-icon {
+  color: #16BEA6;
+  background-color: #16BEA63b;
+}
+
+.sky-blue-card {
+  background-color: #EBFAFF;
+}
+
+.sky-blue-card .card-title {
+  color: #17BCF3;
+}
+
+.sky-blue-card .card-value-icon {
+  color: #17BCF3;
+  background-color: #17BCF33b;
+}
+
+.champagne-card {
+  background-color: #FDF1E0;
+}
+
+.champagne-card .card-title {
+  color: #EE9211;
+}
+
+.champagne-card .card-value-icon {
+  color: #EE9211;
+  background-color: #EE92113b;
+}
+
+.misty-rose-card {
+  background-color: #FFEBEB;
+}
+
+.misty-rose-card .card-title {
+  color: #E41E1E;
+}
+
+.misty-rose-card .card-value-icon {
+  color: #E41E1E;
+  background-color: #E41E1E3b;
 }
 
 /*~~~~~~~~~ Custom Card :: Ends ~~~~~~~~ */
@@ -823,13 +936,14 @@ main .main-container .form-container {
     height: 15rem;
   }
 
-  .footer-logo, .footer-logo .logo {
+  .footer-logo,
+  .footer-logo .logo {
     font-size: 0.875rem;
   }
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
-  
+
   main {
     width: 90%;
   }
@@ -1110,5 +1224,5 @@ main .main-container .form-container {
     height: 15rem;
   }
 }
-/* ********** Media queries Style :: Begins ********** */
 
+/* ********** Media queries Style :: Begins ********** */
