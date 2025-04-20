@@ -35,7 +35,8 @@
                 <input type="hidden" name="blogContent" id="blogContent">
 
                 <div class="" style="margin-top: 2rem; text-align: end;">
-                    <button type="submit" class="custom-btn custom-submit-btn ">Publish</button>
+                    <button type="button" class="custom-btn custom-reset-btn me-2" onclick="previewBtnHandler()">Preview</button>
+                    <button type="submit" class="custom-btn custom-submit-btn">Publish</button>
                 </div>
             </form>
 
@@ -72,6 +73,25 @@
                 var hiddenContent = document.querySelector('#blogContent');
                 hiddenContent.value = quill.root.innerHTML; // Get the HTML content from Quill
                 return true; // Proceed with the form submission
+            }
+
+            function previewBtnHandler() {
+                let blogContentValue = document.querySelector('#blogContent');
+                const blogTitleValue = document.getElementsByName("blogTitle")[0].value;
+                const blogDescriptionValue = document.getElementsByName("blogDescription")[0].value;
+                const blogFeaturedImageValue = document.getElementsByName("blogFeaturedImage")[0].value;
+                const blogCategoryValue = document.getElementsByName("blogCategory")[0].value;
+                
+                blogContentValue = quill.root.innerHTML;
+
+                const blogData = {
+                    "blogContentValue": blogContentValue,
+                    "blogTitleValue": blogTitleValue,
+                    "blogDescriptionValue": blogDescriptionValue,
+                    "blogFeaturedImageValue": blogFeaturedImageValue,
+                    "blogCategoryValue": blogCategoryValue
+                }
+                
             }
         </script>
 

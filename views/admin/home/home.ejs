@@ -2,50 +2,77 @@
     <%- include('../../admin/includes/header') %>
 
         <!-- Home Container :: Begins -->
-        <main style="min-height: calc(100vh - 10rem);">
-            <div class="section-heading">
-                <p class="mb-0"><%= greeting %></p>
-                <h2><%= user.name %></h2>
+        <main class="dashboard-container py-5" >
+            <div class="section-heading-wrapper pb-5">
+                <div class="section-heading">
+                    <p class=""><%= greeting %></p>
+                    <h2 class="mb-0"><%= user.name %></h2>
+                </div>
             </div>
-            <div class="row mx-0" style="min-height: 8rem;">
-                <div class="col-lg-3 col-sm-12 ps-0">
-                    <div class="card h-100">
+        
+            <div class="row mx-0 gap-3 gap-lg-0" style="min-height: 8rem;">
+                <div class="col-lg-3 col-sm-12 ps-lg-0">
+                    <div class="card h-100 admin-custom-card pale-aqua-card">
                         <div class="card-body">
-                            Work in Progress
+                            <div class="card-body-top">
+                                <h2 class="card-title">Total Number of Blogs</h2>
+                            </div>
+                            <div class="card-value-container">
+                                <p class="card-value"><%= count.postCount %></p>
+                                <span class="card-value-icon"><i class="fa-regular fa-newspaper"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
-                    <div class="card h-100">
+                    <div class="card h-100 admin-custom-card champagne-card">
                         <div class="card-body">
-                            Work in Progress
+                            <div class="card-body-top">
+                                <h2 class="card-title">Total Number of Categories</h2>
+                            </div>
+                            <div class="card-value-container">
+                                <p class="card-value"><%= count.categoryCount %></p>
+                                <span class="card-value-icon"><i class="fa-regular fa-rectangle-list"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
-                    <div class="card h-100">
+                    <div class="card h-100 admin-custom-card sky-blue-card">
                         <div class="card-body">
-                            Work in Progress
+                            <div class="card-body-top">
+                                <h2 class="card-title">Total Number of Users</h2>
+                            </div>
+                            <div class="card-value-container">
+                                <p class="card-value"><%= count.userCount %></p>
+                                <span class="card-value-icon"><i class="fa-solid fa-users"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12 pe-0">
-                    <div class="card h-100">
+                <div class="col-lg-3 col-sm-12 pe-lg-0">
+                    <div class="card h-100 admin-custom-card misty-rose-card">
                         <div class="card-body">
-                            Work in Progress
+                            <div class="card-body-top">
+                                <h2 class="card-title">Total Earning</h2>
+                            </div>
+                            <div class="card-value-container">
+                                <p class="card-value">-10$</p>
+                                <span class="card-value-icon"><i class="fa-solid fa-wallet"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mx-0 mt-3" style="min-height: calc(100% / 2 - 6rem - 31px);">
-                <div class="col-lg-7 col-sm-12 ps-0">
+            <div class="row mx-0 mt-3 gap-3 gap-lg-0" style="min-height: calc(100% - 25rem - 9.25rem)">
+                <div class="col-lg-7 col-sm-12 ps-lg-0">
                     <div class="card h-100">
                         <div class="card-body">
                             Work in Progress
                         </div>
                       </div>
                 </div>
-                <diV class="col-lg-5 col-sm-12 pe-0">
+                <diV class="col-lg-5 col-sm-12 pe-lg-0">
                     <div class="card h-100">
                         <div class="card-body">
                             Work in Progress
@@ -53,8 +80,8 @@
                       </div>
                 </diV>
             </div>
-            <div class="row mx-0 mt-3" style="min-height: calc(100% / 2 - 6rem - 31px);">
-                <div class="col-lg-4 col-sm-12 ps-0">
+            <div class="row mx-0 mt-3 gap-3 gap-lg-0" style="min-height: 15rem;">
+                <div class="col-lg-4 col-sm-12 ps-lg-0">
                     <div class="card h-100">
                         <div class="card-body">
                             Work in Progress
@@ -68,7 +95,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="col-lg-4 col-sm-12 pe-0">
+                <div class="col-lg-4 col-sm-12 pe-lg-0">
                     <div class="card h-100">
                         <div class="card-body">
                             Work in Progress

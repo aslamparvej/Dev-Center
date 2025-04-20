@@ -20,12 +20,28 @@ function getGreeting() {
     }
 }
 
+function checkCount(count) {
+    return count < 10 ? "0" + count : count ;
+}
+
 async function getDashboard(req, res) {
     const user = await User.findById(req.userId);
 
+    let postCount = await Post.countDocuments();
+    let userCount = await User.countDocuments();
+    let categoryCount = await Category.countDocuments();
+
+    
+
+    let count = {
+        postCount: checkCount(postCount),
+        userCount: checkCount(userCount),
+        categoryCount: checkCount(categoryCount),
+    }
+
     // Checking time
     const greeting = getGreeting()
-    res.render("admin/home/home", {user: user, greeting: greeting});
+    res.render("admin/home/home", {user: user, greeting: greeting, count: count});
 }
 
 
