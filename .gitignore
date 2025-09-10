@@ -1,3 +1,4 @@
 node_modules
 database-details.txt
 .env
+public/uploads/

@@ -3,6 +3,8 @@ const Post = require('../models/post.model');
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
+const {generateBlogFromTopic} = require('../services/aiBlogService');
+
 
 
 function getGreeting() {
@@ -21,7 +23,7 @@ function getGreeting() {
 }
 
 function checkCount(count) {
-    return count < 10 ? "0" + count : count ;
+    return count < 10 ? "0" + count : count;
 }
 
 async function getDashboard(req, res) {
@@ -31,7 +33,7 @@ async function getDashboard(req, res) {
     let userCount = await User.countDocuments();
     let categoryCount = await Category.countDocuments();
 
-    
+
 
     let count = {
         postCount: checkCount(postCount),
@@ -41,7 +43,7 @@ async function getDashboard(req, res) {
 
     // Checking time
     const greeting = getGreeting()
-    res.render("admin/home/home", {user: user, greeting: greeting, count: count});
+    res.render("admin/home/home", { user: user, greeting: greeting, count: count });
 }
 
 
@@ -57,7 +59,7 @@ async function getNewBlog(req, res) {
 
 async function getAllBlog(req, res) {
     try {
-        const blogs = await Post.find().populate('category').populate('userId');
+        const blogs = await Post.find().populate('userId');
 
         // res.json(blogs);
         res.render("admin/blog/all-blog", { blogs: blogs });
@@ -97,6 +99,41 @@ async function deleteBlog(req, res) {
         res.redirect('/admin/blogs');
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+}
+
+function getGenerateAiBlog(req, res) {
+    res.render("admin/blog/generate-ai-blog");
+}
+
+async function postGenerateAiBlog(req, res) {
+    try {
+        const { topic } = req.body;
+        if (!topic) return res.status(400).send("Topic is required");
+
+        // avoid accidental duplicates by topic hash
+        const draft = await generateBlogFromTopic(topic);
+        
+
+        // ensure unique slug
+        let finalSlug = draft.slug;
+        let i = 2;
+        while (await Post.findOne({ slug: finalSlug })) {
+            finalSlug = `${draft.slug}-${i++}`;
+        }
+        draft.slug = finalSlug;
+
+        const existingHash = await Post.findOne({ topicHash: draft.topicHash });
+        if (existingHash) {
+            return res.status(409).send("Looks like you already generated a post for a very similar topic.");
+        }
+
+        const saved = await Post.create(draft);
+        // res.redirect(`/blogs/${saved.slug}`);
+        res.redirect(`./blogs`);
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e.message);
     }
 }
 /* Blog Post Controller :: Ends */
@@ -188,7 +225,7 @@ async function addUser(req, res) {
 
         // Create a new user
         const newUser = new User({ username: email, name, email, password: hashedPassword, userType: userType });
-        
+
         const newUserVal = await newUser.save();
         console.log(newUserVal);
 
@@ -265,5 +302,7 @@ module.exports = {
     deleteBlog: deleteBlog,
     getUsers: getUsers,
     addUser: addUser,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    getGenerateAiBlog: getGenerateAiBlog,
+    postGenerateAiBlog: postGenerateAiBlog
 }

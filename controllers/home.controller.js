@@ -5,7 +5,7 @@ const Post = require('../models/post.model');
 
 async function getHome(req, res) {
   try {
-    const blogs = await Post.find().populate('category').populate('userId');
+    const blogs = await Post.find().populate('userId');
 
     res.render("user/home/home", { blogs: blogs });
   } catch (error) {

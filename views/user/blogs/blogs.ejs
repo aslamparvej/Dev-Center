@@ -1,38 +1,744 @@
 <%- include('../includes/head', {webTitle: 'Blogs' }) %>
-<%- include('../includes/header') %>
+    <%- include('../includes/header') %>
         <main>
-            <div class="blog-container" style="padding-block: 2rem; margin-top: 5rem;">
-                <h2 class="section-title">All Blogs</h2>
-                <div class="blog-card-container">
-                    <!-- Blog Card :: Begins  -->
-                    <% blogs.forEach(function(blog) { %>
-                        <div class="blog-card" onclick="location.href='/blog/<%= blog._id %>'">
-                            <div class="blog-card-header">
-                                <img src="<%= blog.featuredImage %>" alt="">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Latest Articles</h1>
+                        <p>Discover cutting-edge insights, tutorials, and AI-generated content that will elevate your
+                            software development skills and keep you ahead of the curve.</p>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <span>📚 <strong>500+</strong> Articles Published</span>
                             </div>
-                            <div class="blog-card-body">
-                                <div class="blog-category"><%= blog.category?.category %></div>
-                                <h2 class="blog-title"><%= blog.title %></h2>
-                                <div class="blog-body">
-                                    <p><%= blog.description.split(/\s+/).slice(0, 20).join(' ') %>...</p>
-                                </div>
+                            <div class="stat-item">
+                                <span>🤖 <strong>100%</strong> AI-Generated Content</span>
                             </div>
-                            <div class="blog-card-footer">
-                                <div class="creator-details-container">
-                                    <span class="creator-avatar" id="creatorAvatar">
-                                        AP
-                                        <!-- <img src="" alt=""> -->
-                                    </span>
-                                    <div class="created-details">
-                                        <span class="creator-name"><%= blog.userId.name %></span>
-                                        <span class="created-date"><%= moment(blog.createdAt).format('DD MMM YYYY') %></span>
-                                    </div>
-                                </div>
+                            <div class="stat-item">
+                                <span>⭐ <strong>95%</strong> Accuracy Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>🔄 <strong>Daily</strong> Updates</span>
                             </div>
                         </div>
-                    <% }); %>
-                    <!-- Blog Card :: Ends  -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section d-none">
+                <div class="container">
+                    <h2>Featured Article</h2>
+                    <div class="featured-article">
+                        <div class="featured-image">🚀</div>
+                        <div class="featured-content">
+                            <h3>The Future of Web Development: WebAssembly and Beyond</h3>
+                            <div class="featured-meta">
+                                <span class="ai-badge">AI Generated</span>
+                                <span>📅 March 20, 2024</span>
+                                <span>⏱️ 12 min read</span>
+                            </div>
+                            <p>Explore how WebAssembly is revolutionizing web performance and opening new possibilities
+                                for web applications. Learn about the latest developments and what they mean for
+                                developers.</p>
+                            <a href="#" class="read-more">Read Full Article →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="filters-section">
+                <div class="container">
+                    <div class="filters-container">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search articles..." id="searchInput"
+                                oninput="filterArticles()">
+                        </div>
+                        <div class="filter-tags">
+                            <div class="filter-tag active" data-category="all" onclick="filterByCategory('all', this)">
+                                All</div>
+                            <div class="filter-tag" data-category="javascript"
+                                onclick="filterByCategory('javascript', this)">JavaScript</div>
+                            <div class="filter-tag" data-category="react" onclick="filterByCategory('react', this)">
+                                React</div>
+                            <div class="filter-tag" data-category="node" onclick="filterByCategory('node', this)">
+                                Node.js</div>
+                            <div class="filter-tag" data-category="ai" onclick="filterByCategory('ai', this)">AI/ML
+                            </div>
+                            <div class="filter-tag" data-category="devops" onclick="filterByCategory('devops', this)">
+                                DevOps</div>
+                            <div class="filter-tag" data-category="python" onclick="filterByCategory('python', this)">
+                                Python</div>
+                        </div>
+                        <div class="sort-dropdown">
+                            <select id="sortSelect" onchange="sortArticles()">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="popular">Most Popular</option>
+                                <option value="longest">Longest Read</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="articles-section">
+                <div class="container">
+                    <div class="loading" id="loading">
+                        <p>Loading articles... ⏳</p>
+                    </div>
+                    <div class="articles-grid" id="articlesGrid">
+                        <% blogs.forEach(function(blog) { %>
+                            <article class="article-card" data-category="node" data-date="2024-03-15"
+                                data-popularity="850" data-readtime="8"
+                                onclick="location.href='/blog/<%= blog.slug %>'">
+                                <div class="article-image">
+                                    <img src="<%= blog.featuredImagePath %>" alt="<%= blog.title %>" />
+                                    <div class="ai-badge">AI Generated</div>
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <div class="article-tags">
+                                            <span class="article-tag">Microservices</span>
+                                        </div>
+                                        <div class="article-date">📅 <%= moment(blog.createdAt).format(' DD MMM YYYY')
+                                                %>
+                                        </div>
+                                    </div>
+                                    <h3 class="article-title">
+                                        <%= blog.title %>
+                                    </h3>
+                                    <p class="article-excerpt">Learn how to architect and deploy microservices that can
+                                        handle millions of requests while maintaining code quality and developer
+                                        productivity.</p>
+                                    <div class="article-footer">
+                                        <div class="read-time"><%= blog.readingMinutes %> min read</div>
+                                        <a href="#" class="read-more">Read More →</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <% }); %>
+                    </div>
+
+                    <div class="pagination d-none">
+                        <button onclick="changePage(-1)" id="prevBtn">← Previous</button>
+                        <button onclick="goToPage(1)" class="active">1</button>
+                        <button onclick="goToPage(2)">2</button>
+                        <button onclick="goToPage(3)">3</button>
+                        <button onclick="goToPage(4)">4</button>
+                        <button onclick="changePage(1)" id="nextBtn">Next →</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            // Global variables
+            let currentPage = 1;
+            let articlesPerPage = 6;
+            let filteredArticles = [];
+            let allArticles = [];
+            let currentCategory = 'all';
+            let currentSort = 'newest';
+
+            // Sample articles data (in a real app, this would come from an API)
+            const articlesData = [
+                {
+                    id: 1,
+                    title: "Building Scalable Microservices with Node.js",
+                    excerpt: "Learn how to architect and deploy microservices that can handle millions of requests while maintaining code quality and developer productivity.",
+                    category: "node",
+                    tags: ["Node.js", "Microservices"],
+                    date: "2024-03-15",
+                    readTime: 8,
+                    popularity: 850,
+                    emoji: "🧠"
+                },
+                {
+                    id: 2,
+                    title: "React Server Components: The Future of Frontend",
+                    excerpt: "Dive deep into React Server Components and discover how they're revolutionizing client-server interactions in modern web applications.",
+                    category: "react",
+                    tags: ["React", "Frontend"],
+                    date: "2024-03-12",
+                    readTime: 10,
+                    popularity: 720,
+                    emoji: "⚛️"
+                },
+                {
+                    id: 3,
+                    title: "Machine Learning Pipelines in Production",
+                    excerpt: "From data preprocessing to model deployment, learn how to build robust ML pipelines using Python and cloud services.",
+                    category: "ai",
+                    tags: ["Python", "Machine Learning"],
+                    date: "2024-03-10",
+                    readTime: 12,
+                    popularity: 950,
+                    emoji: "🐍"
+                },
+                {
+                    id: 4,
+                    title: "JavaScript ES2024: New Features You Need to Know",
+                    excerpt: "Explore the latest JavaScript features that are changing how we write modern applications and improve developer experience.",
+                    category: "javascript",
+                    tags: ["JavaScript", "ES2024"],
+                    date: "2024-03-08",
+                    readTime: 6,
+                    popularity: 680,
+                    emoji: "⚡"
+                },
+                {
+                    id: 5,
+                    title: "Docker Best Practices for Production Deployments",
+                    excerpt: "Master Docker containerization with security, performance, and scalability best practices for production environments.",
+                    category: "devops",
+                    tags: ["Docker", "DevOps"],
+                    date: "2024-03-05",
+                    readTime: 15,
+                    popularity: 790,
+                    emoji: "🐳"
+                },
+                {
+                    id: 6,
+                    title: "Building High-Performance APIs with FastAPI",
+                    excerpt: "Learn how to create lightning-fast APIs using FastAPI with automatic documentation, type hints, and async support.",
+                    category: "python",
+                    tags: ["Python", "FastAPI"],
+                    date: "2024-03-02",
+                    readTime: 9,
+                    popularity: 640,
+                    emoji: "🔥"
+                },
+                {
+                    id: 7,
+                    title: "Advanced React Patterns and Best Practices",
+                    excerpt: "Master advanced React patterns including compound components, render props, and custom hooks for scalable applications.",
+                    category: "react",
+                    tags: ["React", "Patterns"],
+                    date: "2024-02-28",
+                    readTime: 11,
+                    popularity: 780,
+                    emoji: "🎯"
+                },
+                {
+                    id: 8,
+                    title: "Kubernetes Deployment Strategies",
+                    excerpt: "Explore different deployment strategies in Kubernetes including blue-green, canary, and rolling deployments.",
+                    category: "devops",
+                    tags: ["Kubernetes", "DevOps"],
+                    date: "2024-02-25",
+                    readTime: 13,
+                    popularity: 820,
+                    emoji: "☸️"
+                },
+                {
+                    id: 9,
+                    title: "Deep Learning with TensorFlow 2.0",
+                    excerpt: "Build neural networks from scratch using TensorFlow 2.0 and understand the fundamentals of deep learning.",
+                    category: "ai",
+                    tags: ["TensorFlow", "Deep Learning"],
+                    date: "2024-02-22",
+                    readTime: 16,
+                    popularity: 890,
+                    emoji: "🧬"
+                },
+                {
+                    id: 10,
+                    title: "Modern JavaScript Testing Strategies",
+                    excerpt: "Learn comprehensive testing approaches using Jest, Testing Library, and modern testing best practices.",
+                    category: "javascript",
+                    tags: ["JavaScript", "Testing"],
+                    date: "2024-02-20",
+                    readTime: 10,
+                    popularity: 650,
+                    emoji: "🧪"
+                },
+                {
+                    id: 11,
+                    title: "Node.js Performance Optimization",
+                    excerpt: "Optimize your Node.js applications for maximum performance with profiling, caching, and scaling techniques.",
+                    category: "node",
+                    tags: ["Node.js", "Performance"],
+                    date: "2024-02-18",
+                    readTime: 12,
+                    popularity: 740,
+                    emoji: "🚀"
+                },
+                {
+                    id: 12,
+                    title: "Python Data Science Essentials",
+                    excerpt: "Master data manipulation and analysis using pandas, NumPy, and matplotlib for data science projects.",
+                    category: "python",
+                    tags: ["Python", "Data Science"],
+                    date: "2024-02-15",
+                    readTime: 14,
+                    popularity: 710,
+                    emoji: "📊"
+                }
+            ];
+
+
+            // Initialize the application
+            function initializeApp() {
+                allArticles = articlesData;
+                filteredArticles = [...allArticles];
+                renderArticles();
+                setupEventListeners();
+            }
+
+            // Setup event listeners
+            function setupEventListeners() {
+                const searchInput = document.getElementById('searchInput');
+                const sortSelect = document.getElementById('sortSelect');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', debounce(filterArticles, 300));
+                }
+
+                if (sortSelect) {
+                    sortSelect.addEventListener('change', sortArticles);
+                }
+
+                // Add keyboard navigation
+                document.addEventListener('keydown', handleKeyboardNavigation);
+
+                // Add smooth scrolling to pagination
+                const paginationButtons = document.querySelectorAll('.pagination button');
+                paginationButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        setTimeout(() => {
+                            document.querySelector('.articles-section').scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 100);
+                    });
+                });
+            }
+
+            // Debounce function for search
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Filter articles by search term
+            function filterArticles() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+                filteredArticles = allArticles.filter(article => {
+                    const matchesSearch = searchTerm === '' ||
+                        article.title.toLowerCase().includes(searchTerm) ||
+                        article.excerpt.toLowerCase().includes(searchTerm) ||
+                        article.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+                    const matchesCategory = currentCategory === 'all' || article.category === currentCategory;
+
+                    return matchesSearch && matchesCategory;
+                });
+
+                currentPage = 1;
+                sortArticles();
+                renderArticles();
+            }
+
+            // Filter articles by category
+            function filterByCategory(category, element) {
+                // Update active filter tag
+                document.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                element.classList.add('active');
+
+                currentCategory = category;
+                currentPage = 1;
+
+                // Add loading animation
+                showLoading();
+
+                setTimeout(() => {
+                    filterArticles();
+                    hideLoading();
+                }, 300);
+            }
+
+            // Sort articles
+            function sortArticles() {
+                const sortSelect = document.getElementById('sortSelect');
+                currentSort = sortSelect ? sortSelect.value : 'newest';
+
+                filteredArticles.sort((a, b) => {
+                    switch (currentSort) {
+                        case 'newest':
+                            return new Date(b.date) - new Date(a.date);
+                        case 'oldest':
+                            return new Date(a.date) - new Date(b.date);
+                        case 'popular':
+                            return b.popularity - a.popularity;
+                        case 'longest':
+                            return b.readTime - a.readTime;
+                        default:
+                            return new Date(b.date) - new Date(a.date);
+                    }
+                });
+
+                renderArticles();
+            }
+
+            // Render articles
+            function renderArticles() {
+                const articlesGrid = document.getElementById('articlesGrid');
+                if (!articlesGrid) return;
+
+                const startIndex = (currentPage - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                const articlesToShow = filteredArticles.slice(startIndex, endIndex);
+
+                if (articlesToShow.length === 0) {
+                    articlesGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #94a3b8;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                <h3 style="color: #e2e8f0; margin-bottom: 0.5rem;">No articles found</h3>
+                <p>Try adjusting your search terms or filters</p>
+            </div>
+        `;
+                    updatePagination();
+                    return;
+                }
+
+                // articlesGrid.innerHTML = articlesToShow.map(article => createArticleHTML(article)).join('');
+                updatePagination();
+
+                // Add staggered animation to new articles
+                const articleCards = articlesGrid.querySelectorAll('.article-card');
+                articleCards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+
+            // Create article HTML
+            function createArticleHTML(article) {
+                const formattedDate = formatDate(article.date);
+
+                return `
+        <article class="article-card" data-category="${article.category}" data-date="${article.date}" 
+                 data-popularity="${article.popularity}" data-readtime="${article.readTime}">
+            <div class="article-image">
+                ${article.emoji}
+                <div class="ai-badge">AI Generated</div>
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <div class="article-tags">
+                        ${article.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="article-date">📅 ${formattedDate}</div>
+                </div>
+                <h3 class="article-title">${article.title}</h3>
+                <p class="article-excerpt">${article.excerpt}</p>
+                <div class="article-footer">
+                    <div class="read-time">${article.readTime} min read</div>
+                    <a href="#" class="read-more" onclick="readArticle(${article.id}, event)">Read More →</a>
                 </div>
             </div>
-        </main>
-<%- include('../includes/footer') %>
+        </article>
+    `;
+            }
+
+            // Format date
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            }
+
+            // Update pagination
+            function updatePagination() {
+                const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+                const pagination = document.querySelector('.pagination');
+
+                if (!pagination || totalPages <= 1) {
+                    if (pagination) pagination.style.display = 'none';
+                    return;
+                }
+
+                pagination.style.display = 'flex';
+
+                let paginationHTML = '';
+
+                // Previous button
+                paginationHTML += `
+        <button onclick="changePage(-1)" id="prevBtn" ${currentPage === 1 ? 'disabled' : ''}>
+            ← Previous
+        </button>
+    `;
+
+                // Page numbers
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+
+                if (startPage > 1) {
+                    paginationHTML += `<button onclick="goToPage(1)">1</button>`;
+                    if (startPage > 2) {
+                        paginationHTML += `<button disabled>...</button>`;
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHTML += `
+            <button onclick="goToPage(${i})" ${i === currentPage ? 'class="active"' : ''}>
+                ${i}
+            </button>
+        `;
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        paginationHTML += `<button disabled>...</button>`;
+                    }
+                    paginationHTML += `<button onclick="goToPage(${totalPages})">${totalPages}</button>`;
+                }
+
+                // Next button
+                paginationHTML += `
+        <button onclick="changePage(1)" id="nextBtn" ${currentPage === totalPages ? 'disabled' : ''}>
+            Next →
+        </button>
+    `;
+
+                pagination.innerHTML = paginationHTML;
+            }
+
+            // Change page
+            function changePage(direction) {
+                const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+                const newPage = currentPage + direction;
+
+                if (newPage >= 1 && newPage <= totalPages) {
+                    currentPage = newPage;
+                    renderArticles();
+                }
+            }
+
+            // Go to specific page
+            function goToPage(page) {
+                const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+
+                if (page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    renderArticles();
+                }
+            }
+
+            // Handle keyboard navigation
+            function handleKeyboardNavigation(event) {
+                const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+
+                switch (event.key) {
+                    case 'ArrowLeft':
+                        if (event.ctrlKey || event.metaKey) {
+                            event.preventDefault();
+                            if (currentPage > 1) changePage(-1);
+                        }
+                        break;
+                    case 'ArrowRight':
+                        if (event.ctrlKey || event.metaKey) {
+                            event.preventDefault();
+                            if (currentPage < totalPages) changePage(1);
+                        }
+                        break;
+                    case '/':
+                        if (!event.target.matches('input')) {
+                            event.preventDefault();
+                            document.getElementById('searchInput')?.focus();
+                        }
+                        break;
+                    case 'Escape':
+                        if (document.activeElement.matches('input')) {
+                            document.activeElement.blur();
+                        }
+                        break;
+                }
+            }
+
+            // Read article (placeholder function)
+            function readArticle(articleId, event) {
+                event.preventDefault();
+
+                const article = allArticles.find(a => a.id === articleId);
+                if (article) {
+                    // In a real app, this would navigate to the full article
+                    console.log(`Reading article: ${article.title}`);
+
+                    // Show a simple notification
+                    showNotification(`Opening "${article.title}"...`);
+
+                    // Simulate navigation delay
+                    setTimeout(() => {
+                        // This would typically be a router navigation or window.location change
+                        alert(`This would open the full article: "${article.title}"`);
+                    }, 500);
+                }
+            }
+
+            // Show notification
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+        position: fixed;
+        top: 6rem;
+        right: 1.25rem;
+        background: rgb(238 179 13 / 90%);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 600;
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+    `;
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+
+            // Show loading
+            function showLoading() {
+                const loading = document.getElementById('loading');
+                const articlesGrid = document.getElementById('articlesGrid');
+
+                if (loading && articlesGrid) {
+                    loading.classList.add('show');
+                    articlesGrid.style.opacity = '0.5';
+                }
+            }
+
+            // Hide loading
+            function hideLoading() {
+                const loading = document.getElementById('loading');
+                const articlesGrid = document.getElementById('articlesGrid');
+
+                if (loading && articlesGrid) {
+                    loading.classList.remove('show');
+                    articlesGrid.style.opacity = '1';
+                }
+            }
+
+            // Add smooth hover effects to article cards
+            function addHoverEffects() {
+                const articleCards = document.querySelectorAll('.article-card');
+
+                articleCards.forEach(card => {
+                    card.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-8px) scale(1.02)';
+                    });
+
+                    card.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
+            }
+
+            // Initialize tooltips for interactive elements
+            function initializeTooltips() {
+                const elementsWithTooltips = [
+                    { selector: '.search-bar input', tooltip: 'Press "/" to focus search (Ctrl+Arrow keys for navigation)' },
+                    { selector: '.filter-tag', tooltip: 'Click to filter articles by category' },
+                    { selector: '.sort-dropdown select', tooltip: 'Sort articles by different criteria' }
+                ];
+
+                elementsWithTooltips.forEach(({ selector, tooltip }) => {
+                    const elements = document.querySelectorAll(selector);
+                    elements.forEach(element => {
+                        element.title = tooltip;
+                    });
+                });
+            }
+
+            // Add intersection observer for animations
+            function setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                // Observe article cards
+                document.querySelectorAll('.article-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }
+
+            // Update article statistics
+            function updateStats() {
+                const stats = {
+                    total: allArticles.length,
+                    aiGenerated: allArticles.length, // All are AI generated
+                    accuracy: 95,
+                    updates: 'Daily'
+                };
+
+                const statElements = document.querySelectorAll('.stat-item');
+                if (statElements.length >= 4) {
+                    statElements[0].innerHTML = `📚 <strong>${stats.total}+</strong> Articles Published`;
+                    statElements[1].innerHTML = `🤖 <strong>100%</strong> AI-Generated Content`;
+                    statElements[2].innerHTML = `⭐ <strong>${stats.accuracy}%</strong> Accuracy Rate`;
+                    statElements[3].innerHTML = `🔄 <strong>${stats.updates}</strong> Updates`;
+                }
+            }
+
+            // Initialize everything when DOM is loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                initializeApp();
+                updateStats();
+                initializeTooltips();
+
+                // Add a small delay for smooth animations
+                setTimeout(() => {
+                    setupIntersectionObserver();
+                    addHoverEffects();
+                }, 100);
+
+                // Welcome message
+                // setTimeout(() => {
+                //     showNotification('Welcome to Dev Center!');
+                // }, 1000);
+            });
+        </script>
+        <%- include('../includes/footer') %>

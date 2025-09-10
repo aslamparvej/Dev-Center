@@ -1,0 +1,14 @@
+<%- include('../../user/includes/head', {webTitle: 'Generate Ai Blog' }) %>
+    <%- include('../../admin/includes/header') %>
+        <main style="padding-block: 2rem;">
+            <h1>Generate Blog Using AI</h1>
+            <form class="form-container" action="/admin/generate-blog" method="post">
+                <div class="input-container">
+                    <label>Blog Topic</label>
+                    <input name="topic" type="text" placeholder="e.g., Top JavaScript Trends in 2025" required>
+                </div>
+                <button type="submit" class="custom-btn custom-submit-btn">Generate</button>
+            </form>
+        </main>
+
+        <%- include('../../admin/includes/footer') %>

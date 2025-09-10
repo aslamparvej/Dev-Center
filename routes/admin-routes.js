@@ -16,6 +16,9 @@ router.delete('/categories/:id', adminController.deleteCategory);
 router.get('/create-blog', adminController.getNewBlog);
 router.post('/create-blog', upload.single('blogFeaturedImage'), adminController.addNewBlog);
 
+router.get('/generate-blog', adminController.getGenerateAiBlog);
+router.post('/generate-blog', adminController.postGenerateAiBlog);
+
 router.get('/blogs', adminController.getAllBlog);
 router.delete('/blogs/:id', adminController.deleteBlog);
 

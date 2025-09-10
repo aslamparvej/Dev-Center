@@ -1,28 +1,30 @@
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZ435QCN" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <header>
+  <header class="header">
     <div class="header-container">
-      <h1 style="display: none;"><a href="/" class="logo">Dev <span class="logo-span">Center</span></a></h1>
-      <h1><a href="/" class="logo"><img src="../img/assets/website-logo.png" alt="" srcset=""></h1>
+      <h1 class="mb-0">
+        <a href="/" class="logo">
+          <img src="../img/assets/dev-center-logo-white.png" height="60" alt="dev center logo">
+        </a>
+      </h1>
       <nav class="custom-navbar">
         <ul>
-          <li><a class="custom-nav-link" href="/blog">Blog</a></li>
+          <li><a class="custom-nav-link active" href="/">Home</a></li>
+          <li><a class="custom-nav-link" href="/blog">Articles</a></li>
+          <!-- <li><a class="custom-nav-link" href="/categories">Categories</a></li> -->
+          <li><a class="custom-nav-link" href="/about">About</a></li>
           <li><a class="custom-nav-link" href="/contact">Contact</a></li>
-          <% if (!isAuthenticated) { %>
-            <li><a class="custom-nav-link" href="/login">Login</a></li>
-            <% } %>
         </ul>
-        <% if (isAuthenticated) { %>
-          <span class="signup-btn"><a href="/admin">Admin Portal</a></span>
-          <form action="/logout" method="post">
-            <button type="submit" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-          </form>
+        <% if (!isAuthenticated) { %>
+          <span class="signup-btn"><a href="/login">Login</a></span>
           <% } %>
+            <% if (isAuthenticated) { %>
+              <span class="signup-btn"><a href="/admin">Admin Portal</a></span>
+              <form action="/logout" method="post">
+                <button type="submit" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+              </form>
+            <% } %>
       </nav>
       <div class="humberger-menu" id="humberger_menu_btn__ID">
         <span></span>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
   <title>Dev Center - <%= webTitle %>
   </title>
 
-  <link rel="shortcut icon" href="/img/assets/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/img/assets/favicon.png" type="image/x-icon">
 
   <!-- Google Fonts :: Begins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,8 @@
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
   <!-- Font awesome :: Begins -->
-  <script src="https://kit.fontawesome.com/8f46f31b06.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/8f46f31b06.js" crossorigin="anonymous"></script> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <!-- Font awesome :: Ends -->
 
   <!-- BS5 CDN :: Begins -->
@@ -38,11 +39,18 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <!-- Select2 CSS CDN :: Ends -->
 
+  <!-- DataTable CSS CDN :: Begins -->
+  <link rel="stylesheet" href="//cdn.datatables.net/2.3.3/css/dataTables.dataTables.min.css">
+  <!-- DataTable CSS CDN :: Ends -->
+
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.core.css" rel="stylesheet">
+  <!-- Custom CSS :: Begins -->
+  <link rel="stylesheet" href="/css/custom.css" />
+  <!-- Custom CSS :: Ends -->
+
 
 
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-
   <!-- BS5 JS CDN :: Begins -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -58,26 +66,12 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- Select2 JS CDN :: Ends -->
 
-  <!-- Custom CSS :: Begins -->
-  <link rel="stylesheet" href="/css/custom.css" />
-  <!-- Custom CSS :: Ends -->
-
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- DataTable JS CDN :: Begins -->
+  <script src="//cdn.datatables.net/2.3.3/js/dataTables.min.js"></script>
+  <!-- DataTable JS CDN :: Ends -->
 
   <!-- Custum JS File :: Begins -->
   <script src="/js/util.js"></script>
   <!-- Custum JS File :: Ends -->
-
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-MZ435QCN');</script>
-  <!-- End Google Tag Manager -->
-
-
-  
