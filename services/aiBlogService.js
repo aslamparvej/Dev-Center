@@ -37,7 +37,7 @@ Topic: "${topic}"
 Requirements:
 - 1500–2000 words.
 - Clear introduction.
-- Add a TOC (<nav> with links to all section ids) after the introduction (optional).
+- Add a TOC (<nav> with links to all section ids) after the introduction (optional) and and link should be target="_self" [Example: <a href="#faq"  target="_self"></a> ].
 - Maintain a proper H2/H3 hierarchy with descriptive headings.
 - Include code samples if relevant.
 - Add an FAQ (3–5 Q&As).
