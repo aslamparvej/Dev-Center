@@ -3,17 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="<%= blogPost.metaDescription %>">
+
     <% if (blogPost.keywords && blogPost.keywords.length) { %>
     <meta name="keywords" content="<%= blogPost.keywords.join(', ') %>">
     <% } %>
+
     <meta name="author" content="Aslam Parvej">
     <meta property="og:title" content="<%= blogPost.title %>">
 
     <title>Dev Center - <%= blogPost.title %></title>
 
-    <script type="application/ld+json"><%= JSON.stringify(blogPost.schemaJsonLd) %></script>
+    <script type="application/ld+json">
+        <%- JSON.stringify(blogPost.schemaJsonLd) %>
+    </script>
 
     <link rel="shortcut icon" href="/img/assets/favicon.png" type="image/x-icon">
 
