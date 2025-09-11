@@ -148,7 +148,7 @@ High-quality, realistic, abstract-tech background.
         "@type": "BlogPosting",
         "headline": metaTitle,
         "description": metaDescription,
-        "image": `${process.env.SITE_URL}${imgPath}`,
+        "image": `${imgPath}`,
         "url": canonicalUrl,
         "datePublished": new Date().toISOString(),
         "author": { "@type": "Person", "name": "DevCenter Editorial" },
