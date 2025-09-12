@@ -1,11 +1,9 @@
 const User = require('../models/user.model');
 const Post = require('../models/post.model');
 
-
-
 async function getHome(req, res) {
   try {
-    const blogs = await Post.find().populate('userId');
+    const blogs = await Post.find().populate('userId').sort({ createdAt: -1 });
 
     res.render("user/home/home", { blogs: blogs });
   } catch (error) {

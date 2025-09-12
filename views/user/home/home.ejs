@@ -58,7 +58,7 @@
                                 <div class="article-content">
                                     <div class="article-meta">
                                         <div class="article-tags">
-                                            <span class="article-tag">Microservices</span>
+                                            <span class="article-tag">Programming & Development</span>
                                         </div>
                                         <div class="article-date">📅 <%= moment(blog.createdAt).format(' DD MMM YYYY')
                                                 %>
@@ -67,7 +67,7 @@
                                     <h3 class="article-title">
                                         <%= blog.title %>
                                     </h3>
-                                    <p class="article-excerpt">excerpt</p>
+                                    <p class="article-excerpt"><%= blog.excerpt %></p>
                                     <div class="article-footer">
                                         <div class="read-time">
                                             <%= blog.readingMinutes %> min read
