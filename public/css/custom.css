@@ -61,6 +61,10 @@ label {
   line-height: 1.7;
 }
 
+li {
+  color: var(--primary-font-color);
+}
+
 h1,
 h2,
 h3,
@@ -87,10 +91,14 @@ pre code {
   line-height: 1.5;
 }
 
-th, td {
+th,
+td {
   color: var(--primary-font-color);
 }
 
+hr {
+  color: var(--primary-font-color);
+}
 /* ----------- Base Style :: Enda ----------- */
 
 /* ----------- Module Style :: Begins ----------- */
@@ -1827,6 +1835,10 @@ main .main-container .form-container {
   font-weight: 700;
 }
 
+.blog-post-content h2:first-child {
+  margin-top: 0;
+}
+
 .blog-post-content h3 {
   color: #e2e8f0;
   font-size: 1.4rem;
@@ -2141,9 +2153,11 @@ main .main-container .form-container {
 .customer_dataTable_theming {
   border-color: #334155;
 }
+
 .customer_dataTable_theming .dt-column-title {
   text-transform: uppercase;
 }
+
 /* Data Table Themimg :: Ends */
 
 .custom-card-theming {
@@ -2156,7 +2170,7 @@ main .main-container .form-container {
 /* ----------- Media queries Style :: Ends ----------- */
 @media only screen and (max-width: 576px) {
   html {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   main {
@@ -2235,12 +2249,8 @@ main .main-container .form-container {
   }
 
   .blog-post-content {
-    width: 90%;
-  }
-
-  .blog-post-title {
-    font-size: 36px;
-    line-height: 44px;
+    width: 100%;
+    padding: 1.5rem;
   }
 
   .blog-post-details {
@@ -2267,6 +2277,9 @@ main .main-container .form-container {
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
 
   main {
     width: 90%;
@@ -2340,12 +2353,7 @@ main .main-container .form-container {
   }
 
   .blog-post-content {
-    width: 90%;
-  }
-
-  .blog-post-title {
-    font-size: 36px;
-    line-height: 44px;
+    width: 100%;
   }
 
   .blog-post-details {
@@ -2393,6 +2401,9 @@ main .main-container .form-container {
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
+    html {
+    font-size: 13px;
+  }
   main {
     width: 90%;
   }
@@ -2466,11 +2477,6 @@ main .main-container .form-container {
 
   .blog-post-content {
     width: 90%;
-  }
-
-  .blog-post-title {
-    font-size: 36px;
-    line-height: 44px;
   }
 
   .blog-post-details {
@@ -2487,6 +2493,9 @@ main .main-container .form-container {
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
+    html {
+    font-size: 14px;
+  }
   main {
     width: 90%;
   }
@@ -2560,11 +2569,6 @@ main .main-container .form-container {
 
   .blog-post-content {
     width: 90%;
-  }
-
-  .blog-post-title {
-    font-size: 36px;
-    line-height: 44px;
   }
 
   .blog-post-details {
@@ -3049,4 +3053,21 @@ main .main-container .form-container {
 
 .article-card:nth-child(3n) {
   animation-delay: 0.2s;
+}
+
+.sitemap-content {
+  width: 60%;
+  padding: 3rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.sitemap-content .sitemap-body h2 {
+  font-size: 1.25rem;
+}
+.sitemap-content .sitemap-body li {
+  font-size: 0.875rem;
 }
