@@ -15,7 +15,7 @@ const videoRoute = require('./routes/video.routes');
 const aboutRoute = require('./routes/about.routes');
 const contactRoute = require('./routes/contact.routes');
 const adminRoute = require('./routes/admin-routes');
-const sitemapRoute = require('./routes/sitemap.routes');
+const legalRoute = require('./routes/legal.routes');
 
 const authenticateToken = require('./middleware/verifyJWT');
 const authStatus = require('./middleware/setAuthStatus');
@@ -59,7 +59,7 @@ app.use(videoRoute);
 app.use(contactRoute);
 app.use(aboutRoute);
 app.use('/admin', authenticateToken , adminRoute);
-app.use(sitemapRoute);
+app.use(legalRoute);
 
 
 app.listen(PORT, function(){

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block private or unnecessary folders
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.devcenter.in/sitemap.xml
