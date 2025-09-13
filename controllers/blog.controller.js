@@ -2,7 +2,7 @@ const Post = require('../models/post.model');
 
 async function getBlog(req, res) {
     try {
-        const blogs = await Post.find().populate('userId');
+        const blogs = await Post.find().populate('userId').sort({ createdAt: -1 });
 
         res.render('user/blogs/blogs', { blogs: blogs });
     } catch (error) {
