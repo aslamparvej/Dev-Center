@@ -1,14 +1,16 @@
 <%- include('../../user/includes/head', {webTitle: ' Admin' }) %>
   <%- include('../../admin/includes/header') %>
 
-    <!-- login form container :: Begins -->
-    <main style="height: calc(100vh - 10rem); padding: 1rem;">
-      <div class="category-container">
-        <div class="text-end mb-3">
+    <main>
+      <div class="users-container">
+        <div class="text-end my-3">
           <button type="button" class="custom-btn custom-submit-btn " data-bs-toggle="modal"
             data-bs-target="#add_user_modal__ID">Add User</button>
         </div>
-        <table class="table table-bordered table-striped">
+
+        <div class="card custom-card-theming">
+          <div class="card-body">
+        <table class="table table-bordered table-responsive custom_dataTable_theming" id="users_table__ID">
           <thead>
             <tr>
               <th>Name</th>
@@ -22,7 +24,7 @@
             <% users.forEach(function(user){ %>
               <tr>
                 <td>
-                  <%= user.name %>
+                  <a href="#"><%= user.name %></a>
                 </td>
                 <td>
                   <%= user.username %>
@@ -45,9 +47,11 @@
               <% }) %>
           </tbody>
         </table>
+        </div>
+        </div>
       </div>
 
-      <!-- Add Category Modal :: Begins -->
+      <!-- Add User Modal :: Begins -->
       <div class="modal fade" id="add_user_modal__ID" tabindex="-1" aria-labelledby="add_user_modal__ID_Label"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -109,24 +113,22 @@
           </div>
         </div>
       </div>
-      <!-- Add Category Modal :: Ends -->
+      <!-- Add User Modal :: Ends -->
     </main>
-    <!-- login form container :: Ends -->
 
     <script>
       $(document).ready(function () {
-        // $('#add_user_modal__ID').on('shown.bs.modal', function () {
-        //   $('#select2-user_type_select2__ID').select2({
-        //     dropdownParent: $('#add_user_modal__ID'),
-        //     minimumResultsForSearch: -1 
-        //   });
-        // });
+        $("#user_type_select2__ID").select2({ minimumResultsForSearch: -1, dropdownParent: $('#add_user_modal__ID') });
 
-        // $('#add_user_modal__ID').on('hidden.bs.modal', function () {
-        //   $('#select2-user_type_select2__ID').select2('destroy');
-        // });
-
-         $("#user_type_select2__ID").select2({ minimumResultsForSearch: -1,dropdownParent: $('#add_user_modal__ID')});
+        $("#users_table__ID").DataTable({
+          scrollY: "calc(100vh - 25rem)",
+          scrollCollapse: true,
+          ordering: true,
+          info: false,
+          paging: false,
+          searching: false,
+          responsive: true,
+        });
       });
     </script>
 

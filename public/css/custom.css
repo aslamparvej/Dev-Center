@@ -99,6 +99,7 @@ td {
 hr {
   color: var(--primary-font-color);
 }
+
 /* ----------- Base Style :: Enda ----------- */
 
 /* ----------- Module Style :: Begins ----------- */
@@ -1584,20 +1585,21 @@ main .main-container .form-container {
 }
 
 .form-container .input-container input {
-  color: var(--primary-color);
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
+  color: #FFF;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--border-radius-sm);
   border: 1px solid #334155;
   background: rgba(15, 23, 42, 0.5);
 }
 
 .form-container .input-container textarea {
-  color: var(--primary-color);
+  color: #FFF;
   font-size: 1rem;
   padding: 0.7rem 0.5rem;
   border-radius: var(--border-radius-sm);
-  border: 1px solid var(--border-color, #dbdbdb);
+  border: 1px solid #334155;
+  background: rgba(15, 23, 42, 0.5);
   resize: none;
 }
 
@@ -1632,6 +1634,11 @@ main .main-container .form-container {
   border: none;
   border-radius: var(--border-radius-sm);
   cursor: pointer;
+}
+
+.custom-btn-sm {
+  min-height: 1.5rem;
+  padding: 0.35rem 1rem;
 }
 
 .custom-submit-btn {
@@ -1939,8 +1946,8 @@ main .main-container .form-container {
 
 .section-heading {
   padding: 1rem;
-  border-radius: var(--border-radius-lg);
-  background-color: #ffeaec;
+  border-radius: 0.25rem;
+  background-color: #1e293b99;
 }
 
 .section-heading p {
@@ -1951,7 +1958,8 @@ main .main-container .form-container {
 
 .section-heading h2 {
   color: var(--primary-color);
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 /* Admin Dashboard CSS :: Ends */
@@ -2055,7 +2063,7 @@ main .main-container .form-container {
 }
 
 .admin-custom-card {
-  border: 0;
+  border: 0.25rem;
   border-radius: var(--border-radius-md);
 }
 
@@ -2088,7 +2096,7 @@ main .main-container .form-container {
 }
 
 .pale-aqua-card {
-  background-color: #E1FDF9;
+  background-color: #1e293b99;
 }
 
 .pale-aqua-card .card-title {
@@ -2101,7 +2109,7 @@ main .main-container .form-container {
 }
 
 .sky-blue-card {
-  background-color: #EBFAFF;
+  background-color: #1e293b99;
 }
 
 .sky-blue-card .card-title {
@@ -2114,7 +2122,7 @@ main .main-container .form-container {
 }
 
 .champagne-card {
-  background-color: #FDF1E0;
+  background-color: #1e293b99;
 }
 
 .champagne-card .card-title {
@@ -2127,7 +2135,7 @@ main .main-container .form-container {
 }
 
 .misty-rose-card {
-  background-color: #FFEBEB;
+  background-color: #1e293b99;
 }
 
 .misty-rose-card .card-title {
@@ -2150,12 +2158,20 @@ main .main-container .form-container {
 }
 
 /* Data Table Themimg :: Begins */
-.customer_dataTable_theming {
+.custom_dataTable_theming {
   border-color: #334155;
 }
 
-.customer_dataTable_theming .dt-column-title {
+.custom_dataTable_theming .dt-column-title {
   text-transform: uppercase;
+}
+
+.custom_dataTable_theming thead tr th {
+  border-bottom: 0 !important;
+}
+
+.custom_dataTable_theming tbody tr td {
+  vertical-align: middle;
 }
 
 /* Data Table Themimg :: Ends */
@@ -2164,6 +2180,100 @@ main .main-container .form-container {
   border-color: rgba(59, 130, 246, 0.1);
   background-color: rgba(30, 41, 59, 0.6);
 }
+
+.custom-card-theming .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-color: rgba(59, 130, 246, 0.1);
+  ;
+}
+
+.custom-card-theming .card-title {
+  color: #e2e8f0;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.custom-card-theming .card-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Quill Theming :: Begins */
+.ql-toolbar.ql-snow {
+  border-color: #334155;
+}
+
+.ql-container.ql-snow {
+  border-color: #334155;
+}
+
+.ql-snow .ql-picker {
+  color: var(--primary-font-color);
+}
+
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+  fill: var(--primary-font-color);
+}
+
+.ql-snow .ql-stroke {
+  stroke: var(--primary-font-color);
+}
+
+.ql-editor.ql-blank::before {
+  color: var(--primary-font-color);
+}
+
+.ql-editor {
+  height: 25rem;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+/* Quill Theming :: Ends */
+
+/* Select 2 Theming :: Begins */
+.select2-container--default .select2-selection--single {
+  border-radius: var(--border-radius-sm);
+  border: 1px solid #334155;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.select2-container .select2-selection--single {
+  height: auto;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 0.75rem 1rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #FFF;
+  font-size: 0.875rem;
+  line-height: unset;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 12px;
+  right: 8px;
+}
+
+.select2-dropdown {
+  background-color: #0f0f23;
+  border: 1px solid #334155;
+}
+
+.select2-results__option {
+  padding: 0.75rem 1rem;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: var(--primary-color);
+}
+
+/* Select 2 Theming :: Ends */
 
 /* ----------- Theming :: Ends ----------- */
 
@@ -2401,9 +2511,10 @@ main .main-container .form-container {
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-    html {
+  html {
     font-size: 13px;
   }
+
   main {
     width: 90%;
   }
@@ -2493,9 +2604,10 @@ main .main-container .form-container {
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-    html {
+  html {
     font-size: 14px;
   }
+
   main {
     width: 90%;
   }
@@ -3068,6 +3180,43 @@ main .main-container .form-container {
 .sitemap-content .sitemap-body h2 {
   font-size: 1.25rem;
 }
+
 .sitemap-content .sitemap-body li {
   font-size: 0.875rem;
+}
+
+.blog-discription {
+  width: 30rem;
+  overflow: hidden;
+  text-wrap-mode: nowrap;
+  text-overflow: ellipsis;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(238, 179, 13, 0.4) #111;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0f0f23;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #0f0f23;
+  /* thumb color */
+  border-radius: 10px;
+  border: 2px solid #111;
+  /* space around thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* darker on hover */
 }

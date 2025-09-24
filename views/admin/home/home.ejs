@@ -2,14 +2,18 @@
     <%- include('../../admin/includes/header') %>
 
         <!-- Home Container :: Begins -->
-        <main class="dashboard-container py-5" >
-            <div class="section-heading-wrapper pb-5">
+        <main>
+            <div class="section-heading-wrapper py-4">
                 <div class="section-heading">
-                    <p class=""><%= greeting %></p>
-                    <h2 class="mb-0"><%= user.name %></h2>
+                    <p class="">
+                        <%= greeting %>
+                    </p>
+                    <h2 class="mb-0">
+                        <%= user.name %>
+                    </h2>
                 </div>
             </div>
-        
+
             <div class="row mx-0 gap-3 gap-lg-0" style="min-height: 8rem;">
                 <div class="col-lg-3 col-sm-12 ps-lg-0">
                     <div class="card h-100 admin-custom-card pale-aqua-card">
@@ -18,7 +22,9 @@
                                 <h2 class="card-title">Total Number of Blogs</h2>
                             </div>
                             <div class="card-value-container">
-                                <p class="card-value"><%= count.postCount %></p>
+                                <p class="card-value">
+                                    <%= count.postCount %>
+                                </p>
                                 <span class="card-value-icon"><i class="fa-regular fa-newspaper"></i></span>
                             </div>
                         </div>
@@ -31,7 +37,9 @@
                                 <h2 class="card-title">Total Number of Categories</h2>
                             </div>
                             <div class="card-value-container">
-                                <p class="card-value"><%= count.categoryCount %></p>
+                                <p class="card-value">
+                                    <%= count.categoryCount %>
+                                </p>
                                 <span class="card-value-icon"><i class="fa-regular fa-rectangle-list"></i></span>
                             </div>
                         </div>
@@ -44,7 +52,9 @@
                                 <h2 class="card-title">Total Number of Users</h2>
                             </div>
                             <div class="card-value-container">
-                                <p class="card-value"><%= count.userCount %></p>
+                                <p class="card-value">
+                                    <%= count.userCount %>
+                                </p>
                                 <span class="card-value-icon"><i class="fa-solid fa-users"></i></span>
                             </div>
                         </div>
@@ -64,46 +74,101 @@
                     </div>
                 </div>
             </div>
-            <div class="row mx-0 mt-3 gap-3 gap-lg-0" style="min-height: calc(100% - 25rem - 9.25rem)">
-                <div class="col-lg-7 col-sm-12 ps-lg-0">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            Work in Progress
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card custom-card-theming">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Posts</h2>
+                            <div class="card-toolbar">
+                                <a href="/admin/create-blog"><button type="button"
+                                        class="custom-btn custom-btn-sm custom-submit-btn">Create Blog</button></a>
+                                <a href="/admin/blogs"><button type="button"
+                                        class="custom-btn custom-btn-sm custom-submit-btn">View All</button></a>
+                            </div>
                         </div>
-                      </div>
-                </div>
-                <diV class="col-lg-5 col-sm-12 pe-lg-0">
-                    <div class="card h-100">
                         <div class="card-body">
-                            Work in Progress
+                            <table class="table table-bordered table-responsive custom_dataTable_theming"
+                                id="blogs_table__ID">
+                                <thead>
+                                    <tr>
+                                        <th>Blog Name</th>
+                                        <th>User</th>
+                                        <th class="text-center">Image</th>
+                                        <th class="text-center">Published Date</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% blogs.forEach(function(blog) { %>
+                                        <tr>
+                                            <td>
+                                                <a href="/blog/<%= blog.slug %>" target="_blanks">
+                                                    <%= blog.title %>
+                                                </a>
+                                                <p class="blog-discription mb-0">
+                                                    <%= blog.excerpt %>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <a href="#">Aslam Parvej</a>
+                                            </td>
+                                            <td align="center">
+                                                <a href="<%= blog.featuredImagePath %>" target="_blank">
+                                                    <img src="<%= blog.featuredImagePath %>" alt="<%= blog.title %>"
+                                                        height="40">
+                                                </a>
+                                            </td>
+                                            <td align="center">
+                                                <%= new Date(blog.createdAt).toLocaleDateString("en-IN", {
+                                                    year: "numeric" , month: "long" , day: "numeric" }) %>
+                                            </td>
+                                            <td align="center">
+                                                <% if (blog.status=='published' ) { %>
+                                                    <p class="badge rounded-pill bg-success text-capitalize mb-0">
+                                                        <%= blog.status %>
+                                                    </p>
+                                                    <% } else { %>
+                                                        <p class="badge rounded-pill bg-secondary text-capitalize mb-0">
+                                                            <%= blog.status %>
+                                                        </p>
+                                                        <% } %>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="custom-action-btn custom-action-btn-edit"><i
+                                                        class="fa-regular fa-sm fa-pen-to-square"></i></span>
+                                                <form action="./blogs/<%= blog._id %>?_method=DELETE" method="POST"
+                                                    style="display: inline">
+                                                    <button type="submit"
+                                                        class="custom-action-btn custom-action-btn-delete"><i
+                                                            class="fa-regular fa-sm fa-trash-can"></i></span>
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                        <% })%>
+                                </tbody>
+                            </table>
                         </div>
-                      </div>
-                </diV>
-            </div>
-            <div class="row mx-0 mt-3 gap-3 gap-lg-0" style="min-height: 15rem;">
-                <div class="col-lg-4 col-sm-12 ps-lg-0">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            Work in Progress
-                        </div>
-                      </div>
-                </div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            Work in Progress
-                        </div>
-                      </div>
-                </div>
-                <div class="col-lg-4 col-sm-12 pe-lg-0">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            Work in Progress
-                        </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </main>
         <!-- Home Container :: Begins -->
+
+        <script>
+            $(document).ready(function () {
+                $("#blogs_table__ID").DataTable({
+                    scrollY: "30rem",
+                    scrollCollapse: true,
+                    ordering: true,
+                    info: false,
+                    paging: false,
+                    searching: false,
+                    responsive: true,
+                });
+            });
+        </script>
 
         <%- include('../../admin/includes/footer') %>

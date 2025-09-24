@@ -2,52 +2,185 @@
     <%- include('../../admin/includes/header') %>
 
         <!-- Home Container :: Begins -->
-        <main style="padding-block: 2rem;">
-            <h1>Create Blog</h1>
+        <main>
+            <div class="my-4">
+                <h1>Create Blog</h1>
+            </div>
 
-            <form class="form-container" method="post" action="./create-blog" style="margin-block: 2rem;"
-                onsubmit="return handleFormSubmit()" enctype="multipart/form-data">
-                <div class="input-container">
-                    <label>Blog Title</label>
-                    <input type="text" name="blogTitle" id="">
-                </div>
-                <div class="input-container">
-                    <label>Blog Desciption</label>
-                    <textarea name="blogDescription" id=""></textarea>
-                </div>
-                <div class="input-container">
-                    <label>Blog Featured Image</label>
-                    <input type="file" name="blogFeaturedImage" id="blogFeaturedImage" accept="image/*" required>
-                </div>
-                <div class="input-container">
-                    <label for="blogCategory">Blog Category</label>
-                    <select id="blogCategory" name="blogCategory">
-                        <option disabled selected>Select a category</option>
-                        <% categories.forEach(function(category) { %>
-                            <option value="<%= category._id %>">
-                                <%= category.category %>
-                            </option>
-                            <% }); %>
-                    </select>
-                </div>
-                <div id="editor"></div>
-                <!-- Hidden input to store the HTML content -->
-                <input type="hidden" name="blogContent" id="blogContent">
+            <div class="card custom-card-theming">
+                <div class="card-body">
+                    <form class="form-container" method="post" action="./create-blog"
+                        onsubmit="return handleFormSubmit()" enctype="multipart/form-data">
+                        <div class="input-container">
+                            <label>Blog Title</label>
+                            <input type="text" name="blogTitle" id="blog_title__ID">
+                        </div>
+                        <div class="input-container">
+                            <label>Blog Slug</label>
+                            <input type="text" name="slug" id="blog_slug__ID">
+                        </div>
+                        <div class="input-container">
+                            <label>Blog Meta Title</label>
+                            <input type="text" name="metaTitle" id="blog_meta_title__ID" readonly>
+                        </div>
+                        <div class="input-container">
+                            <label>Blog Desciption</label>
+                            <textarea name="blogDescription" id=""></textarea>
+                        </div>
+                        <div class="input-container">
+                            <label>Blog Featured Image</label>
+                            <input type="file" name="blogFeaturedImage" id="blogFeaturedImage" accept="image/*"
+                                required>
+                        </div>
+                        <div class="input-container">
+                            <label for="blogCategory">Blog Category</label>
+                            <select id="blogCategory" name="blogCategory">
+                                <option disabled selected>Select a category</option>
+                                <% categories.forEach(function(category) { %>
+                                    <option value="<%= category._id %>">
+                                        <%= category.category %>
+                                    </option>
+                                    <% }); %>
+                            </select>
+                        </div>
+                        <div>
+                            <div id="editor"></div>
+                        </div>
+                        <!-- Hidden input to store the HTML content -->
+                        <input type="hidden" name="blogContent" id="blogContent">
 
-                <div class="" style="margin-top: 2rem; text-align: end;">
-                    <button type="button" class="custom-btn custom-reset-btn me-2" onclick="previewBtnHandler()">Preview</button>
-                    <button type="submit" class="custom-btn custom-submit-btn">Publish</button>
+                        <div class="" style="margin-top: 2rem; text-align: end;">
+                            <button type="button" class="custom-btn custom-reset-btn me-2"
+                                onclick="">Preview</button>
+                            <button type="submit" class="custom-btn custom-submit-btn">Publish</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-
+            </div>
 
         </main>
         <!-- Home Container :: Begins -->
 
         <script>
+            const blogTitle = document.querySelector("#blog_title__ID");
+            const blogSlug = document.querySelector("#blog_slug__ID");
+            const blogMetaTitle = document.querySelector("#blog_meta_title__ID")
 
+            blogTitle.addEventListener('input', function (e) {
+                console.log(e.target.value);
+                blogSlug.value = slugify(e.target.value);
+                blogMetaTitle.value = generateMetaTitle(e.target.value);
+            });
+
+            // Slug Generating
+            function slugify(title, opts = {}) {
+                const { lower = true, maxLength = 100 } = opts;
+
+                if (!title || typeof title !== 'string') return '';
+
+                // 1. Trim
+                let s = title.trim();
+
+                // 2. Normalize unicode and remove diacritics (é -> e)
+                s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+
+                // 3. Replace common punctuation / smart quotes with plain equivalents or remove
+                s = s
+                    .replace(/[’‘‚‛‹›]/g, "'")   // smart single quotes -> '
+                    .replace(/[“”„‟«»]/g, '"')   // smart double quotes -> "
+                    .replace(/[`~!@#$%^*()+=\[\]{};:"\\|<>\/?]+/g, ' ') // other punctuation -> space
+                    .replace(/['"]/g, '')        // remove simple quotes
+                    .replace(/&/g, ' and ');     // replace & with ' and '
+
+                // 4. Replace any non-alphanumeric (including underscores) with hyphens
+                s = s.replace(/[^0-9A-Za-z]+/g, '-');
+
+                // 5. Collapse multiple hyphens, trim leading/trailing hyphens
+                s = s.replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+                // 6. Lowercase if requested
+                if (lower) s = s.toLowerCase();
+
+                // 7. Trim to maxLength safely (no trailing hyphen)
+                if (maxLength && s.length > maxLength) {
+                    s = s.slice(0, maxLength).replace(/-$/g, '');
+                }
+
+                return s;
+            }
+
+            // Meta title Generating
+            function generateMetaTitle(title, opts = {}) {
+                const { maxLength = 60, suffix = " | DevCenter" } = opts;
+
+                if (!title || typeof title !== "string") return "";
+
+                let metaTitle = title.trim();
+
+                // Capitalize first letter if needed
+                metaTitle = metaTitle.charAt(0).toUpperCase() + metaTitle.slice(1);
+
+                // Add suffix (brand name / website)
+                if (suffix) metaTitle += suffix;
+
+                // Ensure within max length
+                if (metaTitle.length > maxLength) {
+                    metaTitle = metaTitle.slice(0, maxLength - 3).trim() + "...";
+                }
+
+                return metaTitle;
+            }
+
+            // Meta Description Generating
+            function generateMetaDescription(title, excerpt = "", opts = {}) {
+                const { maxLength = 155, brand = "DevCenter" } = opts;
+
+                if (!title || typeof title !== "string") return "";
+
+                // Build a base description
+                let description = excerpt && excerpt.length > 30
+                    ? excerpt // use excerpt if long enough
+                    : `Read "${title}" on ${brand} — learn insights, tips, and guides.`;
+
+                // Ensure it's within character limit
+                if (description.length > maxLength) {
+                    description = description.slice(0, maxLength - 3).trim() + "...";
+                }
+
+                return description;
+            }
+
+            // Keywords Generating
+            function generateMetaKeywords(title, excerpt = "", opts = {}) {
+                const { maxKeywords = 10 } = opts;
+
+                if (!title) return "";
+
+                // Merge title + excerpt
+                let text = (title + " " + excerpt).toLowerCase();
+
+                // Remove punctuation
+                text = text.replace(/[^\w\s]/g, "");
+
+                // Split into words
+                let words = text.split(/\s+/);
+
+                // Remove common stop words
+                const stopWords = new Set([
+                    "a", "an", "the", "to", "with", "and", "or", "in", "on", "of", "for", "by", "is", "at", "as", "from", "this", "that", "it", "your"
+                ]);
+                words = words.filter(w => w && !stopWords.has(w));
+
+                // Remove duplicates
+                const uniqueWords = [...new Set(words)];
+
+                // Limit keywords
+                return uniqueWords.slice(0, maxKeywords).join(", ");
+            }
+            
             $(document).ready(function () {
-                $("#blogCategory").select2({minimumResultsForSearch: -1});
+                $("#blogCategory").select2({ minimumResultsForSearch: -1 });
+
             });
 
             const quill = new Quill('#editor', {
@@ -73,25 +206,6 @@
                 var hiddenContent = document.querySelector('#blogContent');
                 hiddenContent.value = quill.root.innerHTML; // Get the HTML content from Quill
                 return true; // Proceed with the form submission
-            }
-
-            function previewBtnHandler() {
-                let blogContentValue = document.querySelector('#blogContent');
-                const blogTitleValue = document.getElementsByName("blogTitle")[0].value;
-                const blogDescriptionValue = document.getElementsByName("blogDescription")[0].value;
-                const blogFeaturedImageValue = document.getElementsByName("blogFeaturedImage")[0].value;
-                const blogCategoryValue = document.getElementsByName("blogCategory")[0].value;
-                
-                blogContentValue = quill.root.innerHTML;
-
-                const blogData = {
-                    "blogContentValue": blogContentValue,
-                    "blogTitleValue": blogTitleValue,
-                    "blogDescriptionValue": blogDescriptionValue,
-                    "blogFeaturedImageValue": blogFeaturedImageValue,
-                    "blogCategoryValue": blogCategoryValue
-                }
-                
             }
         </script>
 

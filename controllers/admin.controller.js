@@ -28,6 +28,7 @@ function checkCount(count) {
 
 async function getDashboard(req, res) {
     const user = await User.findById(req.userId);
+    const blogs = await Post.find().populate('userId').sort({ createdAt: -1 }).limit(6);
 
     let postCount = await Post.countDocuments();
     let userCount = await User.countDocuments();
@@ -43,7 +44,7 @@ async function getDashboard(req, res) {
 
     // Checking time
     const greeting = getGreeting()
-    res.render("admin/home/home", { user: user, greeting: greeting, count: count });
+    res.render("admin/home/home", { user: user, greeting: greeting, count: count,  blogs: blogs});
 }
 
 

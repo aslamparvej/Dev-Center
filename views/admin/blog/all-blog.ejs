@@ -4,20 +4,22 @@
         <!-- Home Container :: Begins -->
         <main>
             <div class="blogs-container">
-                <div class="text-end mb-3">
-                    <a href="/admin/create-blog"><button type="button" class="custom-btn custom-submit-btn">Add
-                            Category</button></a>
+                <div class="text-end my-3">
+                    <a href="/admin/create-blog"><button type="button" class="custom-btn custom-submit-btn">Create
+                            Blog</button></a>
                 </div>
                 <div class="card custom-card-theming">
                     <div class="card-body">
                         <div style="overflow: auto;">
-                            <table class="table table-bordered table-responsive customer_dataTable_theming"
+                            <table class="table table-bordered table-responsive custom_dataTable_theming"
                                 id="blogs_table__ID">
                                 <thead>
                                     <tr>
                                         <th>Blog Name</th>
                                         <th>User</th>
-                                        <th>Image</th>
+                                        <th class="text-center">Image</th>
+                                        <th class="text-center">Published Date</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -25,14 +27,37 @@
                                     <% blogs.forEach(function(blog) { %>
                                         <tr>
                                             <td>
-                                                <%= blog.title %>
+                                                <a href="/blog/<%= blog.slug %>" target="_blanks">
+                                                    <%= blog.title %>
+                                                </a>
+                                                <p class="blog-discription mb-0">
+                                                    <%= blog.excerpt %>
+                                                </p>
                                             </td>
                                             <td>
-
+                                                <a href="#">Aslam Parvej</a>
                                             </td>
-                                            <td><a href="<%= blog.featuredImagePath %>" target="_blank">
-
-                                                </a></td>
+                                            <td align="center">
+                                                <a href="<%= blog.featuredImagePath %>" target="_blank">
+                                                    <img src="<%= blog.featuredImagePath %>" alt="<%= blog.title %>"
+                                                        height="40">
+                                                </a>
+                                            </td>
+                                            <td align="center">
+                                                <%= new Date(blog.createdAt).toLocaleDateString("en-IN", {
+                                                    year: "numeric" , month: "long" , day: "numeric" }) %>
+                                            </td>
+                                            <td align="center">
+                                                <% if (blog.status=='published' ) { %>
+                                                    <p class="badge rounded-pill bg-success text-capitalize mb-0">
+                                                        <%= blog.status %>
+                                                    </p>
+                                                    <% } else { %>
+                                                        <p class="badge rounded-pill bg-secondary text-capitalize mb-0">
+                                                            <%= blog.status %>
+                                                        </p>
+                                                        <% } %>
+                                            </td>
                                             <td class="text-center">
                                                 <span class="custom-action-btn custom-action-btn-edit"><i
                                                         class="fa-regular fa-sm fa-pen-to-square"></i></span>
@@ -58,9 +83,13 @@
         <script>
             $(document).ready(function () {
                 $("#blogs_table__ID").DataTable({
-                    "info": false,
-                    "paging": false,
+                    scrollY: "calc(100vh - 25rem)",
+                    scrollCollapse: true,
+                    ordering: true,
+                    info: false,
+                    paging: false,
                     searching: false,
+                    responsive: true,
                 });
             });
         </script>
