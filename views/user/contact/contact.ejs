@@ -19,15 +19,9 @@
                         <p>Fill out the form below and we'll get back to you as soon as possible.</p>
 
                         <form id="contactForm" onsubmit="handleSubmit(event)">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
                             </div>
 
                             <div class="form-group">
@@ -79,9 +73,11 @@
                             <h3><span><i class="fa-solid fa-comment"></i></span> Follow Us</h3>
                             <p>Stay updated with our latest content</p>
                             <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                                <a href="#" style="font-size: 1.5rem;" title="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="#" style="font-size: 1.5rem;" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" style="font-size: 1.5rem;" title="LinkedIn"><i class="fab fa-linkedIn"></i></a>
+                                <a href="https://x.com/CrazyDevelope18?t=xWxMATJsaXHLH9ews37-Yw&s=08" target="_blank"
+                                    style="font-size: 1.5rem;" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/company/108716230" target="_blank"
+                                    style="font-size: 1.5rem;" title="LinkedIn"><i
+                                        class="fa-brands fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -144,27 +140,82 @@
 
                 const submitBtn = document.getElementById('submitBtn');
                 const form = document.getElementById('contactForm');
+                const SITE_URL = "<%= process.env.SITE_URL %>";
+
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const subject = document.getElementById("subject").value;
+                const message = document.getElementById("message").value;
+
 
                 // Show loading state
                 submitBtn.classList.add('loading');
                 submitBtn.innerHTML = '<span>Sending...</span><span>⏳</span>';
 
                 // Simulate form submission (replace with actual form handling)
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.classList.add('success');
-                    submitBtn.innerHTML = '<span>Message Sent!</span><span>✓</span>';
+                // setTimeout(() => {
+                //     submitBtn.classList.remove('loading');
+                //     submitBtn.classList.add('success');
+                //     submitBtn.innerHTML = '<span>Message Sent!</span><span>✓</span>';
 
-                    // Reset form
-                    form.reset();
+                //     // Reset form
+                //     form.reset();
 
-                    // Reset button after 3 seconds
-                    setTimeout(() => {
-                        submitBtn.classList.remove('success');
-                        submitBtn.innerHTML = '<span>Send Message</span><span>→</span>';
-                    }, 3000);
+                //     // Reset button after 3 seconds
+                //     setTimeout(() => {
+                //         submitBtn.classList.remove('success');
+                //         submitBtn.innerHTML = '<span>Send Message</span><span>→</span>';
+                //     }, 3000);
 
-                }, 2000);
+                // }, 2000);
+
+                // POST request
+                fetch(`${SITE_URL}/contact`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Response:", data);
+
+                        if (data.success) {
+                            // Success state
+                            submitBtn.classList.remove("loading");
+                            submitBtn.classList.add("success");
+                            submitBtn.innerHTML = '<span>Message Sent!</span><span>✓</span>';
+
+                            // Reset form
+                            form.reset();
+
+                            // Reset button after 3 seconds
+                            setTimeout(() => {
+                                submitBtn.classList.remove("success");
+                                submitBtn.innerHTML = '<span>Send Message</span><span>→</span>';
+                            }, 3000);
+                        } else {
+                            throw new Error(data.message || "Something went wrong");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+
+                        // Error state
+                        submitBtn.classList.remove("loading");
+                        submitBtn.classList.add("error");
+                        submitBtn.innerHTML = '<span>Failed!</span><span>⚠️</span>';
+
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.classList.remove("error");
+                            submitBtn.innerHTML = '<span>Send Message</span><span>→</span>';
+                        }, 3000);
+                    });
             }
 
             function toggleFaq(element) {
