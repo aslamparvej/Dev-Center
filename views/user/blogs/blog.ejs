@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="<%= blogPost.metaDescription %>">
+    <meta name="description" content="<%= blogPost.metaDescription %>" />
 
     <% if (blogPost.keywords && blogPost.keywords.length) { %>
-    <meta name="keywords" content="<%= blogPost.keywords.join(', ') %>">
+    <meta name="keywords" content="<%= blogPost.keywords.join(', ') %>" />
     <% } %>
 
-    <meta name="author" content="Aslam Parvej">
-    <meta property="og:title" content="<%= blogPost.title %>">
+    <meta name="author" content="Aslam Parvej" />
+    <meta property="og:title" content="<%= blogPost.title %>" />
 
     <title>Dev Center - <%= blogPost.title %></title>
 
     <script type="application/ld+json">
-        <%- JSON.stringify(blogPost.schemaJsonLd) %>
+      <%- JSON.stringify(blogPost.schemaJsonLd) %>
     </script>
 
-    <link rel="shortcut icon" href="/img/assets/favicon.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="/img/assets/favicon.png"
+      type="image/x-icon"
+    />
 
     <!-- Google Fonts :: Begins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Montserrat:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Google Fonts :: Ends -->
 
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css"
+      rel="stylesheet"
+    />
 
     <!-- Font awesome :: Begins -->
     <!-- <script src="https://kit.fontawesome.com/8f46f31b06.js" crossorigin="anonymous"></script> -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Font awesome :: Ends -->
 
     <!-- BS5 CDN :: Begins -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <!-- BS5 CDN :: Ends -->
 
     <!-- Select2 CSS CDN :: Begins -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
     <!-- Select2 CSS CDN :: Ends -->
 
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.core.css" rel="stylesheet">
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.core.css"
+      rel="stylesheet"
+    />
 
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
     <!-- BS5 JS CDN :: Begins -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <!-- BS5 JS CDN :: Ends -->
 
     <!-- JQuery JS CDN :: Begins -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <!-- JQuery JS CDN :: Ends -->
 
     <!-- Select2 JS CDN :: Begins -->
@@ -76,45 +103,42 @@
     <!-- Custum JS File :: Begins -->
     <script src="/js/util.js"></script>
     <!-- Custum JS File :: Ends -->
+  </head>
 
-</head>
-
-<%- include('../includes/header') %>
-    <main>
-        <div class="blog-container" style="padding-block: 2rem;">
-            <div class="blog-post-header">
-                <div class="blog-post-details">
-                    <div class="d-flex gap-4 justify-content-center">
-                        <p class="blog-post-published-details">
-                            <span class="me-1"><i class="fas fa-calendar"></i></span>
-                            Published <%= moment(blogPost.createdAt).format('DD MMM YYYY') %>
-                        </p>
-                        <p class="blog-post-published-details">
-                            <span class="me-1"><i class="fas fa-clock"></i></span>
-                            <%= blogPost.readingMinutes %> min read
-                        </p>
-                    </div>
-                    <h1 class="blog-post-title">
-                        <%= blogPost.title %>
-                    </h1>
-                    <p class="blog-post-description d-none">
-                        <%= blogPost.description %>
-                    </p>
-                    <p class="blog-post-category-container">
-                        <span class="badge rounded-pill bg-info text-dark">
-                            <%= blogPost.category?.category %>
-                        </span>
-                    </p>
-                </div>
-                <div class="blog-post-featured-iamge">
-                    <img src="<%= blogPost.featuredImagePath %>" alt="">
-                </div>
-            </div>
-            <div class="blog-post-content">
-                <%- blogPost.html %>
-            </div>
+  <%- include('../includes/header') %>
+  <main>
+    <div class="blog-container" style="padding-block: 2rem">
+      <div class="blog-post-header">
+        <div class="blog-post-details">
+          <div class="d-flex gap-4 justify-content-center">
+            <p class="blog-post-published-details">
+              <span class="me-1"><i class="fas fa-calendar"></i></span>
+              Published <%= moment(blogPost.createdAt).format('DD MMM YYYY') %>
+            </p>
+            <p class="blog-post-published-details">
+              <span class="me-1"><i class="fas fa-clock"></i></span>
+              <%= blogPost.readingMinutes %> min read
+            </p>
+          </div>
+          <h1 class="blog-post-title"><%= blogPost.title %></h1>
+          <p class="blog-post-description d-none">
+            <%= blogPost.description %>
+          </p>
+          <p class="blog-post-category-container article-tags justify-content-center">
+            <% blogPost.keywords.forEach(function(keyword) { %>
+            <span class="article-tag">
+              <%= keyword %>
+            </span>
+            <% }); %>
+          </p>
         </div>
-    </main>
+        <div class="blog-post-featured-iamge">
+          <img src="<%= blogPost.featuredImagePath %>" alt="" />
+        </div>
+      </div>
+      <div class="blog-post-content"><%- blogPost.html %></div>
+    </div>
+  </main>
 
-
-    <%- include('../includes/footer') %>
+  <%- include('../includes/footer') %>
+</html>

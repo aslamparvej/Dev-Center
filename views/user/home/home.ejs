@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="hero-content">
                         <h1>AI-Powered Software Development Blog</h1>
-                        <p>Discover cutting-edge insights, tutorials, and AI-generated content that will elevate your
+                        <p>Discover cutting-edge insights, tutorials, and AI-Enhanced content that will elevate your
                             coding journey. From beginner tips to advanced architectures.</p>
                         <a href="#blog" class="cta-button">
                             Explore Articles
@@ -53,12 +53,13 @@
                                 onclick="location.href='/blog/<%= blog.slug %>'">
                                 <div class="article-image">
                                     <img src="<%= blog.featuredImagePath %>" alt="<%= blog.title %>" />
-                                    <div class="ai-badge">AI Generated</div>
                                 </div>
                                 <div class="article-content">
                                     <div class="article-meta">
                                         <div class="article-tags">
-                                            <span class="article-tag">Programming & Development</span>
+                                            <% blog.keywords.slice(0, 1).forEach(function(keyword) { %>
+                                                <span class="article-tag"><%= keyword %></span>
+                                            <% }); %>
                                         </div>
                                         <div class="article-date">📅 <%= moment(blog.createdAt).format(' DD MMM YYYY')
                                                 %>

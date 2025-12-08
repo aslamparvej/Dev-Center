@@ -33,7 +33,6 @@
                         <div class="featured-content">
                             <h3>The Future of Web Development: WebAssembly and Beyond</h3>
                             <div class="featured-meta">
-                                <span class="ai-badge">AI Generated</span>
                                 <span>📅 March 20, 2024</span>
                                 <span>⏱️ 12 min read</span>
                             </div>
@@ -93,12 +92,13 @@
                                 onclick="location.href='/blog/<%= blog.slug %>'">
                                 <div class="article-image">
                                     <img src="<%= blog.featuredImagePath %>" alt="<%= blog.title %>" />
-                                    <div class="ai-badge">AI Generated</div>
                                 </div>
                                 <div class="article-content">
                                     <div class="article-meta">
                                         <div class="article-tags">
-                                            <span class="article-tag">Microservices</span>
+                                            <% blog.keywords.slice(0, 1).forEach(function(keyword) { %>
+                                                <span class="article-tag"><%= keyword %></span>
+                                            <% }); %>
                                         </div>
                                         <div class="article-date">📅 <%= moment(blog.createdAt).format(' DD MMM YYYY')
                                                 %>
@@ -437,7 +437,6 @@
                  data-popularity="${article.popularity}" data-readtime="${article.readTime}">
             <div class="article-image">
                 ${article.emoji}
-                <div class="ai-badge">AI Generated</div>
             </div>
             <div class="article-content">
                 <div class="article-meta">
@@ -709,7 +708,7 @@
             function updateStats() {
                 const stats = {
                     total: allArticles.length,
-                    aiGenerated: allArticles.length, // All are AI generated
+                    aiEnhanced: allArticles.length, // All are AI enhanced
                     accuracy: 95,
                     updates: 'Daily'
                 };
@@ -717,7 +716,7 @@
                 const statElements = document.querySelectorAll('.stat-item');
                 if (statElements.length >= 4) {
                     statElements[0].innerHTML = `📚 <strong>${stats.total}+</strong> Articles Published`;
-                    statElements[1].innerHTML = `🤖 <strong>100%</strong> AI-Generated Content`;
+                    statElements[1].innerHTML = `🤖 <strong>100%</strong> AI-Enhanced Content`;
                     statElements[2].innerHTML = `⭐ <strong>${stats.accuracy}%</strong> Accuracy Rate`;
                     statElements[3].innerHTML = `🔄 <strong>${stats.updates}</strong> Updates`;
                 }
