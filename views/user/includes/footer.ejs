@@ -43,18 +43,18 @@
       <div class="footer-section">
         <h3><i class="fas fa-share-alt"></i>Stay Connected</h3>
         <div class="social-links">
-          <a href="#" class="social-link" title="GitHub">
+          <a href="https://github.com/aslamparvej/Dev-Center.git" target="_blank" class="social-link" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="#" class="social-link" title="Twitter">
+          <a href="https://x.com/DevCenterIn" class="social-link" title="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="social-link" title="LinkedIn">
+          <a href="https://www.linkedin.com/company/dev-center/" class="social-link" title="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="#" class="social-link" title="RSS">
+          <!-- <a href="#" class="social-link d-none" title="RSS">
             <i class="fas fa-rss"></i>
-          </a>
+          </a> -->
         </div>
 
         <div class="newsletter">
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Dev Center. All rights reserved.</p>
+      <p>&copy; <span id="current-year"></span> Dev Center. All rights reserved.</p>
       <div class="footer-meta">
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms-and-conditions">Terms & Conditions</a>
@@ -79,5 +79,10 @@
   </div>
 </footer>
 </body>
+
+<script>
+  // Set current year in footer
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 
 </html>
